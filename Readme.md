@@ -8,10 +8,11 @@
 > **AI contribution notice**
 > Parts of this kernel — including the BMI160 accelerometer/gyroscope,
 > AH1903 hall sensor, YAS537 magnetometer/compass support, the ACCDET
-> headset configuration and several device-tree fixes — were developed
-> with the help of an AI coding assistant. Everything was built and
-> tested on real hardware before being committed, except the fingerprint
-> (the test unit's sensor module is faulty; see below).
+> headset configuration, the BQ24296 charger driver and several
+> device-tree fixes — were developed with the help of an AI coding
+> assistant. Everything was built and tested on real hardware before
+> being committed, except the fingerprint (the test unit's sensor module
+> is faulty; see below).
 
 > **Tested on one device only**
 > This kernel has only been tested on a single Redmi Note 4 (nikel,
@@ -40,6 +41,9 @@
 	* BMI160 gyroscope
 	* Wired headset detection, audio routing, mic and buttons
 	* Lock-screen numeric PIN (credential set and unlock verified)
+	* Battery gauge and charging (BQ24296 on I2C-0): charge status,
+	  current and voltage are reported and refreshed, and the battery
+	  charges instead of the charger sitting disabled
 
 =================================================
 * Not working / untested:
@@ -96,6 +100,45 @@
 		3. Settings → Lock screen & password → Fingerprints → Add.
 	  If the SPI reads remain 0x0, reseat or replace the fingerprint
 	  flex/module. The software side is ready for a working module.
+
+=========================================================================
+* Charging / battery status:
+
+	* This board uses a BQ24296-family charger at I2C address 0x6b on
+	  I2C-0 (the `sw_charger@6b` node), not a BQ25890. The stock MIUI
+	  kernel uses the `bq24296` / `charging_hw_bq24296` drivers, so
+	  this kernel builds `bq24296.c` for the chip.
+
+	* The kernel-side driver uses plain `i2c_transfer()` reads and
+	  writes. MTK's `(1<<8|1)` I2C-extension read is deliberately not
+	  used because `CONFIG_MTK_I2C_EXTENSION` is disabled in this tree
+	  (treating it as a 257-byte DMA from a one-byte buffer is unsafe).
+
+	* Hardware layer: the `charging_hw_bq24296.c` shipped in this tree
+	  targets an MT6332 companion PMIC that nikel does not have, so the
+	  MT6351 version (`lct_charging_hw_bq24296.c`, same current/voltage
+	  tables) is compiled instead.
+
+	* Verified on the author's unit (second-hand, battery condition
+	  unknown):
+		- `bq24296` probes on I2C-0 at 0x6b; REG08 reports
+		  `CHRG_STAT=fast charging` and `PG_STAT=1`, REG09=0 (no
+		  charger fault).
+		- Average battery current is positive while charging
+		  (~0.15–0.6 A on a 500 mA PC USB port) and the battery
+		  voltage rises when the charge starts.
+		- The `power_supply` attributes are refreshed every battery
+		  cycle instead of staying frozen at their cable-in values.
+		- Charging from about 76 % upward was observed during
+		  bring-up, but a complete 0–100 % cycle has not been
+		  documented yet. Use a real charger for a full-charge test;
+		  a PC USB port with the screen on may show a net discharge.
+
+	* `dumpsys battery` still prints duplicated `_smb` fields
+	  (`level: 79` followed by `level: 50`, etc.). Those are the
+	  dual-battery stubs in `battery_common_fg_20.c` (`capacity_smb` /
+	  `present_smb` are fixed at 50 / 0); Android uses the non-`_smb`
+	  `capacity` / `present` values.
 
 # Building the kernel
 ```

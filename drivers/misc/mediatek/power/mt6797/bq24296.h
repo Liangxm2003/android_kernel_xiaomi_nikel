@@ -20,6 +20,8 @@
 #ifndef _bq24296_SW_H_
 #define _bq24296_SW_H_
 
+#include <mt-plat/mtk_thermal_typedefs.h>
+
 #define bq24296_CON0      0x00
 #define bq24296_CON1      0x01
 #define bq24296_CON2      0x02

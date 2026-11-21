@@ -1,40 +1,17 @@
-#include <linux/interrupt.h>
+#include <linux/types.h>
+#include <linux/init.h>
+#include <linux/module.h>
+#include <linux/platform_device.h>
 #include <linux/i2c.h>
 #include <linux/slab.h>
-#include <linux/irq.h>
-#include <linux/miscdevice.h>
-#include <asm/uaccess.h>
 #include <linux/delay.h>
-#include <linux/input.h>
-#include <linux/workqueue.h>
-#include <linux/kobject.h>
-#include <linux/earlysuspend.h>
-#include <linux/platform_device.h>
-#include <asm/atomic.h>
 #ifdef CONFIG_OF
 #include <linux/of.h>
 #include <linux/of_irq.h>
 #include <linux/of_address.h>
 #endif
-#include <cust_acc.h>
-#include <linux/hwmsensor.h>
-#include <linux/hwmsen_dev.h>
-#include <linux/sensors_io.h>
-#include <linux/hwmsen_helper.h>
-#include <linux/xlog.h>
-
-#include <mach/mt_typedefs.h>
-#include <mach/mt_gpio.h>
-#include <mach/mt_pm_ldo.h>
-
+#include <mt-plat/charging.h>
 #include "bq24296.h"
-#include "cust_charging.h"
-#include <mach/charging.h>
-
-#if defined(CONFIG_MTK_FPGA)
-#else
-#include <cust_i2c.h>
-#endif
 
 /**********************************************************
   *
@@ -59,6 +36,7 @@ static int bq24296_driver_probe(struct i2c_client *client, const struct i2c_devi
 #ifdef CONFIG_OF
 static const struct of_device_id bq24296_of_match[] = {
 	{ .compatible = "bq24296", },
+	{ .compatible = "mediatek,sw_charger", },
 	{},
 };
 
@@ -94,59 +72,67 @@ int g_bq24296_hw_exist=0;
   *********************************************************/
 int bq24296_read_byte(kal_uint8 cmd, kal_uint8 *returnData)
 {
-    char     cmd_buf[1]={0x00};
-    char     readData = 0;
-    int      ret=0;
+    unsigned char xfers = 2;
+    int ret, retries = 2;
+
+    if (!new_client)
+        return 0;
 
     mutex_lock(&bq24296_i2c_access);
-    
-    //new_client->addr = ((new_client->addr) & I2C_MASK_FLAG) | I2C_WR_FLAG;    
-    new_client->ext_flag=((new_client->ext_flag ) & I2C_MASK_FLAG ) | I2C_WR_FLAG | I2C_DIRECTION_FLAG;
 
-    cmd_buf[0] = cmd;
-    ret = i2c_master_send(new_client, &cmd_buf[0], (1<<8 | 1));
-    if (ret < 0) 
-    {    
-        //new_client->addr = new_client->addr & I2C_MASK_FLAG;
-        new_client->ext_flag=0;
-		
-        mutex_unlock(&bq24296_i2c_access);
-        return 0;
-    }
-    
-    readData = cmd_buf[0];
-    *returnData = readData;
+    do {
+        struct i2c_msg msgs[2] = {
+            {
+                .addr  = new_client->addr,
+                .flags = 0,
+                .len   = 1,
+                .buf   = &cmd,
+            },
+            {
+                .addr  = new_client->addr,
+                .flags = I2C_M_RD,
+                .len   = 1,
+                .buf   = returnData,
+            }
+        };
 
-    //new_client->addr = new_client->addr & I2C_MASK_FLAG;
-    new_client->ext_flag=0;
-	
-    mutex_unlock(&bq24296_i2c_access);    
-    return 1;
+        ret = i2c_transfer(new_client->adapter, msgs, xfers);
+    } while (ret != xfers && --retries);
+
+    mutex_unlock(&bq24296_i2c_access);
+
+    return ret == xfers ? 1 : 0;
 }
 
 int bq24296_write_byte(kal_uint8 cmd, kal_uint8 writeData)
 {
-    char    write_data[2] = {0};
-    int     ret=0;
-    
-    mutex_lock(&bq24296_i2c_access);
-    
-    write_data[0] = cmd;
-    write_data[1] = writeData;
+    unsigned char buf[2];
+    int ret, retries = 2;
 
-    new_client->ext_flag=((new_client->ext_flag ) & I2C_MASK_FLAG ) | I2C_DIRECTION_FLAG;
-	
-    ret = i2c_master_send(new_client, write_data, 2);
-    if (ret < 0) 
-    {
-        new_client->ext_flag=0;    
-        mutex_unlock(&bq24296_i2c_access);
+    if (!new_client)
         return 0;
-    }
 
-    new_client->ext_flag=0;    
+    mutex_lock(&bq24296_i2c_access);
+
+    buf[0] = cmd;
+    buf[1] = writeData;
+
+    do {
+        struct i2c_msg msgs[1] = {
+            {
+                .addr  = new_client->addr,
+                .flags = 0,
+                .len   = 2,
+                .buf   = buf,
+            },
+        };
+
+        ret = i2c_transfer(new_client->adapter, msgs, 1);
+    } while (ret != 1 && --retries);
+
     mutex_unlock(&bq24296_i2c_access);
-    return 1;
+
+    return ret == 1 ? 1 : 0;
 }
 
 /**********************************************************
@@ -707,13 +693,11 @@ static struct platform_driver bq24296_user_space_driver = {
         .name = "bq24296-user",
     },
 };
-static struct i2c_board_info __initdata i2c_bq24296 = { I2C_BOARD_INFO("bq24296", (bq24296_SLAVE_ADDR_WRITE>>1))};
 static int __init bq24296_subsys_init(void)
 {    
     int ret=0;
     
     battery_xlog_printk(BAT_LOG_CRTI,"[bq24296_init] init start. ch=%d\n", bq24296_BUSNUM);
-    i2c_register_board_info(3, &i2c_bq24296, 1);
     if(i2c_add_driver(&bq24296_driver)!=0)
     {
         battery_xlog_printk(BAT_LOG_CRTI,"[bq24261_init] failed to register bq24261 i2c driver.\n");

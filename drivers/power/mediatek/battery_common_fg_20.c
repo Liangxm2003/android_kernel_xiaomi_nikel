@@ -2919,6 +2919,15 @@ void BAT_thread(void)
 	}
 
 	mt_kpoc_power_off_check();
+
+	/*
+	 * Keep the userspace battery values fresh.  The update thread
+	 * normally only runs when the userspace FG daemon reports a new
+	 * UI_SOC2, so without this the power_supply attributes (status,
+	 * capacity, voltage, current) can stay at their cable-in values
+	 * for as long as the gauge SOC does not change.
+	 */
+	bat_update_thread_wakeup();
 }
 
 /* ///////////////////////////////////////////////////////////////////////////////////////// */
