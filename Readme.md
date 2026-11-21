@@ -8,11 +8,11 @@
 > **AI contribution notice**
 > Parts of this kernel — including the BMI160 accelerometer/gyroscope,
 > AH1903 hall sensor, YAS537 magnetometer/compass support, the ACCDET
-> headset configuration, the BQ24296 charger driver and several
-> device-tree fixes — were developed with the help of an AI coding
-> assistant. Everything was built and tested on real hardware before
-> being committed, except the fingerprint (the test unit's sensor module
-> is faulty; see below).
+> headset configuration, the BQ24296 charger driver, the FT5346 touch
+> EINT/HPS tuning and several device-tree fixes — were developed with
+> the help of an AI coding assistant. Everything was built and tested on
+> real hardware before being committed, except the fingerprint (the test
+> unit's sensor module is faulty; see below).
 
 > **Tested on one device only**
 > This kernel has only been tested on a single Redmi Note 4 (nikel,
@@ -139,6 +139,34 @@
 	  dual-battery stubs in `battery_common_fg_20.c` (`capacity_smb` /
 	  `present_smb` are fixed at 50 / 0); Android uses the non-`_smb`
 	  `capacity` / `present` values.
+
+=========================================================================
+* Touch / UI responsiveness:
+
+	* Touch is an FT5346 on I2C-4 (address 0x38), with its EINT on
+	  GPIO85. The INT line is active-low, so the EINT is configured
+	  **level-low** and is masked while the touch thread reads a
+	  report. Without level-low a fast drag could miss a report and
+	  appear to stick until the finger was moved back; without the
+	  mask the level interrupt could fire tens of thousands of times
+	  per second while a finger was held down.
+
+	* MTK HPS (hotplug) is given a base of four little cores
+	  (`little_num_base_perf_serv = 4`, big-cluster base 0). With the
+	  old single-core idle state, the built-in CIT touch test and the UI
+	  visibly lagged. HPS still moves the online set, but it no longer
+	  collapses to one CPU; this costs some idle power.
+
+	* The touch controller is kept powered and in its working mode
+	  across suspend/resume; only its IRQ is disabled. The old
+	  suspend/resume path power-cycled and reset the panel without
+	  replaying the full probe initialization, which made the CIT drag
+	  stick again after every screen cycle. Keeping it powered fixes
+	  that, at the cost of a small amount of standby power.
+
+	* Verified with the built-in CIT touch test: the full-screen drag
+	  completes smoothly both after boot and after a lock/unlock cycle.
+	  Idle touch-IRQ counts are stable, and no I2C-4 errors are logged.
 
 # Building the kernel
 ```

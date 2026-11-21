@@ -138,12 +138,12 @@ hps_ctxt_t hps_ctxt = {
 	.tlp_times = DEF_TLP_TIMES,
 
 	/* algo bound */
-	/* .little_num_base_perf_serv = 1, */
+	.little_num_base_perf_serv = 4,
 	/* .little_num_limit_thermal = NR_CPUS, */
 	/* .little_num_limit_low_battery = NR_CPUS, */
 	/* .little_num_limit_ultra_power_saving = NR_CPUS, */
 	/* .little_num_limit_power_serv = NR_CPUS, */
-	/* .big_num_base_perf_serv = 1, */
+	.big_num_base_perf_serv = 0,
 	/* .big_num_limit_thermal = NR_CPUS, */
 	/* .big_num_limit_low_battery = NR_CPUS, */
 	/* .big_num_limit_ultra_power_saving = NR_CPUS, */

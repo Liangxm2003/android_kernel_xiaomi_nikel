@@ -414,6 +414,22 @@ void hps_algo_main(void)
 	mutex_lock(&hps_ctxt.para_lock);
 	for (i = 0; i < hps_sys.cluster_num; i++) {
 		hps_sys.cluster_info[i].base_value = hps_sys.cluster_info[i].ref_base_value;
+		/*
+		 * Keep enough little cores online to service the UI and the
+		 * touch event thread.  PPM only asks for one core at idle, so
+		 * without a floor HPS drops to a single CPU and the CIT touch
+		 * test visibly lags/stalls.  Do not override a lower PPM limit
+		 * (thermal / low battery / power saving).
+		 */
+		if (hps_sys.cluster_info[i].cpu_id_min <= hps_ctxt.little_cpu_id_max) {
+			if (hps_sys.cluster_info[i].base_value < hps_ctxt.little_num_base_perf_serv &&
+			    hps_ctxt.little_num_base_perf_serv <= hps_sys.cluster_info[i].ref_limit_value)
+				hps_sys.cluster_info[i].base_value = hps_ctxt.little_num_base_perf_serv;
+		} else {
+			if (hps_sys.cluster_info[i].base_value < hps_ctxt.big_num_base_perf_serv &&
+			    hps_ctxt.big_num_base_perf_serv <= hps_sys.cluster_info[i].ref_limit_value)
+				hps_sys.cluster_info[i].base_value = hps_ctxt.big_num_base_perf_serv;
+		}
 		hps_sys.cluster_info[i].limit_value = hps_sys.cluster_info[i].ref_limit_value;
 	}
 

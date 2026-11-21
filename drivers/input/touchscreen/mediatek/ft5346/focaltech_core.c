@@ -188,6 +188,13 @@ static void tpd_resume(struct device *h);
 static void tpd_suspend(struct device *h);
 static void fts_release_all_finger(void);
 static int tpd_flag;
+/*
+ * The FT5346 INT line is level/low until the report has been read.  Mask it
+ * in the hard handler and release it only after the touch thread has drained
+ * the report, otherwise a level-triggered EINT storms at tens of kHz while a
+ * finger is held down.
+ */
+static atomic_t tpd_irq_masked = ATOMIC_INIT(0);
 /*static int point_num = 0;
 static int p_point_num = 0;*/
 
@@ -794,9 +801,6 @@ int fts_read_reg(struct i2c_client *client, u8 regaddr, u8 *regvalue)
 }
 
 // rn4x
-int FG_charging_status = 0;
-int charging_flag = 0;
-
 static int touch_event_handler(void *unused)
 {
 	int i = 0;
@@ -824,21 +828,6 @@ static int touch_event_handler(void *unused)
 
 		set_current_state(TASK_RUNNING);
 
-		if((FG_charging_status != 0) && (charging_flag == 0))
-		{
-			charging_flag = 1;
-            fts_write_reg(i2c_client, 0x8B, 2);
-		}
-		else
-		{
-			if((FG_charging_status  == 0) && (charging_flag == 1))
-			{
-				charging_flag = 0;
-                fts_write_reg(i2c_client, 0x8B, 2);
-			}
-		}
-
-
 		ret = fts_read_reg(fts_i2c_client, 0xD0, &state);
 		if (ret < 0)
 		{
@@ -848,6 +837,8 @@ static int touch_event_handler(void *unused)
 		if(state == 1)
 		{
 			fts_read_Gestruedata();
+			if (atomic_xchg(&tpd_irq_masked, 0))
+				enable_irq(touch_irq);
 			continue;
 		}
 		
@@ -859,6 +850,9 @@ static int touch_event_handler(void *unused)
 			if (ret == 0)
 				fts_report_value(&pevent);
 		}
+
+		if (atomic_xchg(&tpd_irq_masked, 0))
+			enable_irq(touch_irq);
 		
 	} while (!kthread_should_stop());
 
@@ -878,6 +872,8 @@ static int tpd_i2c_detect(struct i2c_client *client, struct i2c_board_info *info
 static irqreturn_t tpd_eint_interrupt_handler(int irq, void *dev_id)
 {
 	//TPD_DEBUG("TPD interrupt has been triggered\n");
+	if (atomic_cmpxchg(&tpd_irq_masked, 0, 1) == 0)
+		disable_irq_nosync(touch_irq);
 	tpd_flag = 1;
 	//tuwenzan@wind-mobi.com modify at 20160602 begin
 	#if CTP_ESD_PROTECT
@@ -902,7 +898,7 @@ static int tpd_irq_registration(void)
 
 		touch_irq = irq_of_parse_and_map(node, 0);
 		ret = request_irq(touch_irq, tpd_eint_interrupt_handler,
-					IRQF_TRIGGER_FALLING, "TOUCH_PANEL-eint", NULL);
+					IRQF_TRIGGER_LOW, "TOUCH_PANEL-eint", NULL);
 			if (ret > 0)
 				TPD_DMESG("tpd request_irq IRQ LINE NOT AVAILABLE!.");
 	} else {
@@ -1277,37 +1273,25 @@ static void tfs_tp_set_cover_mode(void) {
 static void tpd_resume(struct device *h)
 {
     printk("tpd_resume enter\n");
-	tpd_gpio_enable_regulator_output(1);
-	tpd_gpio_output(tpd_rst_gpio_number, 0);
-	msleep(20);
-	tpd_gpio_output(tpd_rst_gpio_number, 1);
-	msleep(200);
-
-	fts_write_reg(fts_i2c_client, 0xD0, 2);
+	/*
+	 * Keep the controller powered and in its working mode across the
+	 * screen cycle.  The old resume path power-cycled and reset it, but
+	 * did not replay the full probe initialization, which left the panel
+	 * dropping reports (the CIT drag stuck again after every resume).
+	 */
+	irq_set_irq_type(touch_irq, IRQ_TYPE_LEVEL_LOW);
 	fts_release_all_finger();
 	enable_irq(touch_irq);
-	FG_charging_status = charging_flag == 0;
 	tfs_tp_set_cover_mode();
 }
 
 static void tpd_suspend(struct device *h)
 {
     printk("tpd_suspend enter\n");
-	fts_write_reg(i2c_client, 0xD0, 2);
-	fts_write_reg(i2c_client, 0xD0, 2);
-	fts_write_reg(i2c_client, 0xD1, 2);
-	fts_write_reg(i2c_client, 0xD2, 2);
-	fts_write_reg(i2c_client, 0xD5, 2);
-	fts_write_reg(i2c_client, 0xD6, 2);
-	fts_write_reg(i2c_client, 0xD7, 2);
-	fts_write_reg(i2c_client, 0xD8, 2);
-	  
-	msleep(10);
-
-	disable_irq(touch_irq);
-	fts_write_reg(i2c_client, 0xA5, 2);
-	tpd_gpio_enable_regulator_output(0);
 	fts_release_all_finger();
+	if (atomic_xchg(&tpd_irq_masked, 0))
+		enable_irq(touch_irq);
+	disable_irq(touch_irq);
 }
 // end rn4x
 
