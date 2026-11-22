@@ -3525,7 +3525,15 @@ signed int battery_meter_set_columb_interrupt(unsigned int val)
 }
 #endif				/* #if defined(FG_BAT_INT) */
 
-signed int battery_meter_get_battery_percentage(void)
+#if defined(CONFIG_MTK_BQ24296_SUPPORT)
+extern int nikel_cw2015_get_soc(int *soc, int mtk_soc);
+#endif
+
+/*
+ * Run MediaTek's own battery meter exactly as before.  The reported
+ * percentage is decided in battery_meter_get_battery_percentage() below.
+ */
+static signed int battery_meter_get_battery_percentage_mtk(void)
 {
 #if defined(CONFIG_POWER_EXT)
 	return 50;
@@ -3571,6 +3579,30 @@ signed int battery_meter_get_battery_percentage(void)
 #endif
 
 #endif
+}
+
+/*
+ * nikel: the board has a CellWise CW2015 fuel gauge on I2C-1 at 0x62
+ * (nikel_cw2015.c, read-only).  The official nikel kernel uses a CW2015
+ * gauge with MediaTek's classic battery meter, so use its percentage for
+ * the reported SOC when the gauge is awake and has a loaded profile.
+ * The MediaTek algorithm above still runs first so its coulomb-counter
+ * and Qmax state stay consistent; its value is the fallback.
+ */
+signed int battery_meter_get_battery_percentage(void)
+{
+	signed int mtk_soc = battery_meter_get_battery_percentage_mtk();
+
+#if defined(CONFIG_MTK_BQ24296_SUPPORT) && !defined(CONFIG_POWER_EXT)
+	{
+		int cw_soc;
+
+		if (nikel_cw2015_get_soc(&cw_soc, mtk_soc) == 0)
+			return cw_soc;
+	}
+#endif
+
+	return mtk_soc;
 }
 
 

@@ -9,11 +9,12 @@
  *   0x10..0x4F battery profile (logged once, as a backup copy).
  * It never writes a register: no profile download, no wake-up, no reset.
  *
- * nikel_cw2015_get_soc() is called by battery_meter_fg_20.c (charger
- * detection paths) and battery_common_fg_20.c (the reported UI capacity).
- * It returns the gauge's percentage only when the gauge is awake and
- * reports a loaded profile; otherwise it returns an error and MediaTek's
- * own gauge percentage is used, as before.
+ * nikel_cw2015_get_soc() is called by battery_meter.c (the reported SOC of
+ * MediaTek's classic battery meter) and by the FG20 helpers
+ * (battery_meter_fg_20.c / battery_common_fg_20.c) if that alternative
+ * meter is ever selected.  It returns the gauge's percentage only when the
+ * gauge is awake and reports a loaded profile; otherwise it returns an
+ * error and MediaTek's own gauge percentage is used, as before.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as

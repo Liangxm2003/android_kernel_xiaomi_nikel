@@ -122,14 +122,20 @@
 	  tables) is compiled instead.
 
 	* Fuel gauge: nikel has a CellWise CW2015 at I2C-1 address 0x62
-	  (DT node `cw2015@62`, compatible `nikel,cw2015`). The kernel uses
-	  its percentage for the reported UI capacity when the gauge is
-	  awake and has a loaded battery profile, and falls back to the
-	  MediaTek FG20 value otherwise. The driver is read-only: it never
-	  writes the battery profile or wakes/resets the gauge. The design
-	  capacity is 4100 mAh. On the author's unit the CW2015 read ~92 %
-	  while the FG20 path reported 79 %, so the displayed percentage now
-	  matches the actual gauge.
+	  (DT node `cw2015@62`, compatible `nikel,cw2015`). The official
+	  MIUI kernel for this board uses a CW2015 gauge together with
+	  MediaTek's *classic* battery meter (`battery_meter.c` /
+	  `battery_common.c`), not Fuel Gauge 2.0, so this tree now does
+	  the same: `CONFIG_MTK_HAFG_20` is disabled and the classic
+	  driver pair is built. The kernel uses the gauge percentage for
+	  the reported SOC when the gauge is awake and has a loaded
+	  battery profile, and falls back to the classic MediaTek value
+	  otherwise. The CW2015 driver is read-only: it never writes the
+	  battery profile or wakes/resets the gauge. The design capacity
+	  is 4100 mAh. On the author's unit the old FG20 path reported
+	  79 % while the gauge read ~92 %; after switching to the classic
+	  meter, both the classic MediaTek value and the CW2015 agree
+	  (94 % at ~4.3 V).
 
 	* Verified on the author's unit (second-hand, battery condition
 	  unknown):
@@ -141,17 +147,18 @@
 		  voltage rises when the charge starts.
 		- The CW2015 reports a valid SOC (CONFIG=0x02, profile
 		  loaded, MODE=0x00 awake) and the UI follows it; the
-		  `power_supply` attributes are refreshed every battery
-		  cycle instead of staying frozen at their cable-in values.
+		  classic battery thread refreshes the `power_supply`
+		  attributes every cycle.
 		- Charging from about 76 % upward was observed during
-		  bring-up; the CW2015 read ~92 % at ~4.2 V in the last
-		  test, but a complete 0–100 % cycle has not been documented
-		  yet. Use a real charger for a full-charge test; a PC USB
-		  port with the screen on may show a net discharge.
+		  bring-up; the CW2015 read ~92–94 % at ~4.2–4.3 V in the
+		  last tests, but a complete 0–100 % cycle has not been
+		  documented yet. Use a real charger for a full-charge
+		  test; a PC USB port with the screen on may show a net
+		  discharge.
 
 	* `dumpsys battery` still prints duplicated `_smb` fields
-	  (`level: 92` followed by `level: 50`, etc.). Those are the
-	  dual-battery stubs in `battery_common_fg_20.c` (`capacity_smb` /
+	  (`level: 94` followed by `level: 50`, etc.). Those are the
+	  dual-battery stubs in `battery_common.c` (`capacity_smb` /
 	  `present_smb` are fixed at 50 / 0); Android uses the non-`_smb`
 	  `capacity` / `present` values.
 
