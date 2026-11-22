@@ -1484,6 +1484,20 @@ out:
 	return err;
 }
 
+static void unix_peek_fds(struct scm_cookie *scm, struct sk_buff *skb)
+{
+	scm->fp = scm_fp_dup(UNIXCB(skb).fp);
+
+	/*
+	 * MSG_PEEK does not change the inflight count, but it does install
+	 * the socket into an fd.  The lock/unlock barrier makes sure garbage
+	 * collection either sees the elevated file count or has finished
+	 * before the fd is installed.
+	 */
+	spin_lock(&unix_gc_lock);
+	spin_unlock(&unix_gc_lock);
+}
+
 static void unix_detach_fds(struct scm_cookie *scm, struct sk_buff *skb)
 {
 	int i;
@@ -2063,7 +2077,7 @@ static int unix_dgram_recvmsg(struct kiocb *iocb, struct socket *sock,
 		sk_peek_offset_fwd(sk, size);
 
 		if (UNIXCB(skb).fp)
-			siocb->scm->fp = scm_fp_dup(UNIXCB(skb).fp);
+			unix_peek_fds(siocb->scm, skb);
 	}
 	err = (flags & MSG_TRUNC) ? skb->len - skip : size;
 
@@ -2314,7 +2328,7 @@ again:
 			/* It is questionable, see note in unix_dgram_recvmsg.
 			 */
 			if (UNIXCB(skb).fp)
-				siocb->scm->fp = scm_fp_dup(UNIXCB(skb).fp);
+				unix_peek_fds(siocb->scm, skb);
 
 			sk_peek_offset_fwd(sk, chunk);
 

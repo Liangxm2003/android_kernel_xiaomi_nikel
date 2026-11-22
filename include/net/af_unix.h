@@ -69,6 +69,8 @@ struct unix_sock {
 
 #define peer_wait peer_wq.wait
 
+extern spinlock_t unix_gc_lock;
+
 long unix_inq_len(struct sock *sk);
 long unix_outq_len(struct sock *sk);
 

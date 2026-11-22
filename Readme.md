@@ -212,6 +212,15 @@
 	  compiled and boot-tested on the author's single nikel unit only.
 	* The CVE backport work was also done with AI assistance, like the
 	  driver work above.
+	* A second pass adds high-value fixes that were never backported to
+	  3.18.y, adapted from the Android common and later stable trees:
+	  binder waitqueue/POLLFREE (CVE-2019-2215, CVE-2020-0030), ashmem
+	  remap (CVE-2020-0009), seq_file allocation limit (CVE-2021-33909),
+	  x_tables compat pad and barriers (CVE-2021-22555, CVE-2021-29650),
+	  AF_UNIX MSG_PEEK garbage collection (CVE-2021-0920), fget
+	  revalidation (CVE-2021-4083), AF_PACKET recvmsg/tpacket bounds
+	  (CVE-2022-20158, CVE-2020-14386), and TCP SACK/GSO limits
+	  (CVE-2019-11477, CVE-2019-11478).
 
 # Building the kernel
 ```

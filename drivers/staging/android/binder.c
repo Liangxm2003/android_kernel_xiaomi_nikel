@@ -505,7 +505,8 @@ enum {
 	BINDER_LOOPER_STATE_EXITED		= 0x04,
 	BINDER_LOOPER_STATE_INVALID		= 0x08,
 	BINDER_LOOPER_STATE_WAITING		= 0x10,
-	BINDER_LOOPER_STATE_NEED_RETURN = 0x20
+	BINDER_LOOPER_STATE_NEED_RETURN = 0x20,
+	BINDER_LOOPER_STATE_POLL	= 0x40
 };
 
 struct binder_thread {
@@ -3959,6 +3960,18 @@ static int binder_free_thread(struct binder_proc *proc, struct binder_thread *th
 	if (send_reply)
 		binder_send_failed_reply(send_reply, BR_DEAD_REPLY);
 	binder_release_work(&thread->todo);
+
+	/*
+	 * If this thread used poll, make sure we remove the waitqueue from
+	 * any epoll data structures holding it with POLLFREE, and wait for
+	 * concurrent ep_remove_waitqueue() users before freeing the thread.
+	 */
+	if ((thread->looper & BINDER_LOOPER_STATE_POLL) &&
+	    waitqueue_active(&thread->wait)) {
+		wake_up_poll(&thread->wait, POLLHUP | POLLFREE);
+		synchronize_rcu();
+	}
+
 	kfree(thread);
 	binder_stats_deleted(BINDER_STAT_THREAD);
 	return active_transactions;
@@ -3976,6 +3989,8 @@ static unsigned int binder_poll(struct file *filp, struct poll_table_struct *wai
 
 	wait_for_proc_work = thread->transaction_stack == NULL &&
 	    list_empty(&thread->todo) && thread->return_error == BR_OK;
+	if (!wait_for_proc_work)
+		thread->looper |= BINDER_LOOPER_STATE_POLL;
 
 	binder_unlock(__func__);
 

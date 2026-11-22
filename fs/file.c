@@ -777,18 +777,25 @@ void do_close_on_exec(struct files_struct *files)
 static struct file *__fget(unsigned int fd, fmode_t mask)
 {
 	struct files_struct *files = current->files;
-	struct file *file;
+	struct file *file, *to_put = NULL;
 
 	rcu_read_lock();
 	file = fcheck_files(files, fd);
 	if (file) {
 		/* File object ref couldn't be taken */
 		if ((file->f_mode & mask) ||
-		    !atomic_long_inc_not_zero(&file->f_count))
+		    !atomic_long_inc_not_zero(&file->f_count)) {
 			file = NULL;
+		} else if (fcheck_files(files, fd) != file) {
+			/* raced with close(); drop the ref after RCU */
+			to_put = file;
+			file = NULL;
+		}
 	}
 	rcu_read_unlock();
 
+	if (to_put)
+		fput(to_put);
 	return file;
 }
 
