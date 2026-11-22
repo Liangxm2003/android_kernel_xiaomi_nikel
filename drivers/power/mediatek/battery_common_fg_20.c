@@ -1638,6 +1638,10 @@ static ssize_t store_Pump_Express(struct device *dev, struct device_attribute *a
 static DEVICE_ATTR(Pump_Express, 0664, show_Pump_Express, store_Pump_Express);
 #endif
 
+#if defined(CONFIG_MTK_BQ24296_SUPPORT)
+extern int nikel_cw2015_get_soc(int *soc, int mtk_soc);
+#endif
+
 static void mt_battery_update_EM(struct battery_data *bat_data)
 {
 #ifndef USING_SMOOTH_UI_SOC2
@@ -1648,8 +1652,23 @@ static void mt_battery_update_EM(struct battery_data *bat_data)
 	 * the -1 initialised in battery_meter_initial() and BAT_CAPACITY
 	 * is clamped to 1, so Android always shows 1% while the gauge
 	 * itself reports the real value in UI_SOC.  Keep the two in sync.
+	 *
+	 * Prefer the board's CW2015 gauge for the reported percentage when
+	 * it is awake and has a loaded profile; the MTK FG20 value is only
+	 * a fallback.
 	 */
+#if defined(CONFIG_MTK_BQ24296_SUPPORT)
+	{
+		int cw_soc;
+
+		if (nikel_cw2015_get_soc(&cw_soc, BMT_status.UI_SOC) == 0)
+			BMT_status.UI_SOC2 = cw_soc;
+		else
+			BMT_status.UI_SOC2 = BMT_status.UI_SOC;
+	}
+#else
 	BMT_status.UI_SOC2 = BMT_status.UI_SOC;
+#endif
 #endif
 	bat_data->BAT_CAPACITY = BMT_status.UI_SOC2;
 	bat_data->BAT_TemperatureR = BMT_status.temperatureR;	/* API */
@@ -1698,8 +1717,8 @@ static void battery_update(struct battery_data *bat_data)
 	bat_data->BAT_batt_vol = BMT_status.bat_vol;
 	bat_data->BAT_batt_temp = BMT_status.temperature * 10;
 	bat_data->BAT_PRESENT = BMT_status.bat_exist;
-	bat_data->charge_full_design = 3180 * 1000;
-	bat_data->charge_full = 3180 * 1000;
+	bat_data->charge_full_design = 4100 * 1000;
+	bat_data->charge_full = 4100 * 1000;
 
 
 	if ((BMT_status.charger_exist == KAL_TRUE) && (BMT_status.bat_charging_state != CHR_ERROR)) {

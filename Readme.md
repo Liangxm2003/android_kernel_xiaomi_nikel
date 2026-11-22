@@ -8,7 +8,8 @@
 > **AI contribution notice**
 > Parts of this kernel — including the BMI160 accelerometer/gyroscope,
 > AH1903 hall sensor, YAS537 magnetometer/compass support, the ACCDET
-> headset configuration, the BQ24296 charger driver, the FT5346 touch
+> headset configuration, the BQ24296 charger driver, the CW2015 fuel
+> gauge, the FT5346 touch
 > EINT/HPS tuning and several device-tree fixes — were developed with
 > the help of an AI coding assistant. Everything was built and tested on
 > real hardware before being committed, except the fingerprint (the test
@@ -41,8 +42,9 @@
 	* BMI160 gyroscope
 	* Wired headset detection, audio routing, mic and buttons
 	* Lock-screen numeric PIN (credential set and unlock verified)
-	* Battery gauge and charging (BQ24296 on I2C-0): charge status,
-	  current and voltage are reported and refreshed, and the battery
+	* Battery gauge and charging (BQ24296 charger on I2C-0, CW2015
+	  gauge on I2C-1): charge status, current, voltage and a
+	  stock-like percentage are reported and refreshed, and the battery
 	  charges instead of the charger sitting disabled
 
 =================================================
@@ -119,6 +121,16 @@
 	  MT6351 version (`lct_charging_hw_bq24296.c`, same current/voltage
 	  tables) is compiled instead.
 
+	* Fuel gauge: nikel has a CellWise CW2015 at I2C-1 address 0x62
+	  (DT node `cw2015@62`, compatible `nikel,cw2015`). The kernel uses
+	  its percentage for the reported UI capacity when the gauge is
+	  awake and has a loaded battery profile, and falls back to the
+	  MediaTek FG20 value otherwise. The driver is read-only: it never
+	  writes the battery profile or wakes/resets the gauge. The design
+	  capacity is 4100 mAh. On the author's unit the CW2015 read ~92 %
+	  while the FG20 path reported 79 %, so the displayed percentage now
+	  matches the actual gauge.
+
 	* Verified on the author's unit (second-hand, battery condition
 	  unknown):
 		- `bq24296` probes on I2C-0 at 0x6b; REG08 reports
@@ -127,15 +139,18 @@
 		- Average battery current is positive while charging
 		  (~0.15–0.6 A on a 500 mA PC USB port) and the battery
 		  voltage rises when the charge starts.
-		- The `power_supply` attributes are refreshed every battery
+		- The CW2015 reports a valid SOC (CONFIG=0x02, profile
+		  loaded, MODE=0x00 awake) and the UI follows it; the
+		  `power_supply` attributes are refreshed every battery
 		  cycle instead of staying frozen at their cable-in values.
 		- Charging from about 76 % upward was observed during
-		  bring-up, but a complete 0–100 % cycle has not been
-		  documented yet. Use a real charger for a full-charge test;
-		  a PC USB port with the screen on may show a net discharge.
+		  bring-up; the CW2015 read ~92 % at ~4.2 V in the last
+		  test, but a complete 0–100 % cycle has not been documented
+		  yet. Use a real charger for a full-charge test; a PC USB
+		  port with the screen on may show a net discharge.
 
 	* `dumpsys battery` still prints duplicated `_smb` fields
-	  (`level: 79` followed by `level: 50`, etc.). Those are the
+	  (`level: 92` followed by `level: 50`, etc.). Those are the
 	  dual-battery stubs in `battery_common_fg_20.c` (`capacity_smb` /
 	  `present_smb` are fixed at 50 / 0); Android uses the non-`_smb`
 	  `capacity` / `present` values.

@@ -2466,17 +2466,36 @@ signed int battery_meter_get_charger_voltage(void)
 	return val;
 }
 
+#if defined(CONFIG_MTK_BQ24296_SUPPORT)
+/*
+ * nikel: the board has a CellWise CW2015 fuel gauge on I2C-1 at 0x62
+ * (nikel_cw2015.c, read-only).  Use its percentage when it is awake and
+ * has a loaded profile; otherwise keep MediaTek's FG20 value.  The MTK
+ * algorithm still runs so its coulomb-counter state stays consistent.
+ */
+extern int nikel_cw2015_get_soc(int *soc, int mtk_soc);
+#endif
+
 signed int battery_meter_get_battery_percentage(void)
 {
-#if defined(CONFIG_POWER_EXT)
-	return 50;
-#else
+	signed int mtk_soc;
 
-#if defined(SOC_BY_HW_FG)
-	return gFG_capacity_by_c;	/* hw fg, //return gfg_percent_check_point; // voltage mode */
+#if defined(CONFIG_POWER_EXT)
+	mtk_soc = 50;
+#else
+	mtk_soc = gFG_capacity_by_c;
 #endif
+
+#if defined(CONFIG_MTK_BQ24296_SUPPORT) && !defined(CONFIG_POWER_EXT)
+	{
+		int cw_soc;
+
+		if (nikel_cw2015_get_soc(&cw_soc, mtk_soc) == 0)
+			return cw_soc;
+	}
 #endif
-	return gFG_capacity_by_c;
+
+	return mtk_soc;
 }
 
 
