@@ -803,7 +803,7 @@ static long mt6605_dev_unlocked_ioctl(struct file *filp, unsigned int cmd,
 
 	struct mt6605_dev *mt6605_dev = filp->private_data;
 	int result = 0;
-	int gpio_dir, gpio_num, tmp_gpio;
+	int gpio_dir, gpio_num = 0, tmp_gpio;
 /*
 	pr_debug("mt6605_dev_unlocked_ioctl: cmd=0x%04x,arg=0x%04lx.\n", cmd,
 		 arg);

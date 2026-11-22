@@ -21,3 +21,9 @@
 
 # prebuilt blobs kept for reference only
 /blob/
+
+# assistant working notes
+/.workbuddy/
+
+# desktop trash folder
+/.Trash-0/

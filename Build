@@ -2,11 +2,8 @@
 
 sudo rm -r out
 
-if [[ ! -d gcc ]]; then
-git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 -b marshmallow-release gcc
-fi
 mkdir -p out
-export CROSS_COMPILE=${PWD}/gcc/bin/aarch64-linux-android-
+export CROSS_COMPILE=$HOME/kernel/tools/gcc-64/bin/aarch64-linux-android-
 export USE_CCACHE=1
 export ARCH=arm64
 export SUBARCH=arm64
