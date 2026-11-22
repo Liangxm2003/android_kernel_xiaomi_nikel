@@ -1,0 +1,366 @@
+cve,fixed,priority,applies,reason,commit,subject
+CVE-2015-2925,3.18.23,P1,yes,,27f5c615afb5303eb902a1f2535903e0fd1d7517,dcache: Handle escaped paths in prepend_path
+CVE-2015-3291,3.18.23,,no,arch/feature not built (arm64),4bc532d8428f6dd671c66f51ce5e459cc0ff1c86,x86/nmi/64: Use DF to avoid userspace RSP confusing nested NMI detection
+CVE-2015-5257,3.18.23,,no,USB class driver not built,b57a9f68701f9587e1b1792232db55615353c314,USB: whiteheat: fix potential null-deref at probe
+CVE-2015-5283,3.18.23,,no,CONFIG_IP_SCTP=n,779c19e0ac88b95710ceae2495caebfd442dd2c1,sctp: fix race on protocol/netns initialization
+CVE-2015-7613,3.18.23,P1,yes,,b5495ddce4659122180b5fee6fc52dc5196e0918,Initialize msg/shm IPC objects before doing ipc_addid()
+CVE-2015-8746,3.18.23,,no,CONFIG_NFS_FS=n,7730c1b9620d5b4887699d1b2ad9338fc63ca736,NFS: Fix a NULL pointer dereference of migration recovery ops for v4.2 client
+CVE-2015-0275,3.18.25,P2,yes,,b9fca5cb9ab94112bebd1e5db862962df9dfcec2,ext4: allocate entire range in zero range
+CVE-2015-4036,3.18.25,,no,CONFIG_VHOST_SCSI=n,0812542d8e5337822045c81695caff87ea4f5105,vhost/scsi: potential memory corruption
+CVE-2015-5156,3.18.25,,no,CONFIG_VIRTIO_NET=n,feeb0406f75ae3488ff6573903533000125b2faf,virtio-net: drop NETIF_F_FRAGLIST
+CVE-2015-5307,3.18.25,,no,x86 KVM only,79e62de2efb2f586726e46342c792360a9644319,KVM: x86: work around infinite loop in microcode when #AC is delivered
+CVE-2015-6937,3.18.25,,no,CONFIG_RDS=n,cf6580ef92b0f5baf6f9a0ff2c51d852ba5145ba,RDS: verify the underlying transport exists before creating a connection
+CVE-2015-7872,3.18.25,,no,CONFIG_KEYS=n,16d8da6c17a7024180e3b9865eb9fad605a9b382,KEYS: Fix crash when attempt to garbage collect an uninstantiated keyring
+CVE-2015-8215,3.18.25,P2,yes,,a9ff3cb5ec5a60c9b9a5dc3d1e870bdb29451f0a,ipv6: addrconf: validate new MTU before applying it
+CVE-2016-3841,3.18.25,P0,yes,,46ddb98e2018a5a62cefa75b3c80882850c91e39,ipv6: add complete rcu protection around np->opt
+CVE-2013-7446,3.18.26,P1,yes,,72032798034d921ed565e3bf8dfdc3098f6473e2,unix: avoid use-after-free in ep_remove_wait_queue
+CVE-2015-7550,3.18.26,,no,CONFIG_KEYS=n,e41946e47ec501023afd7e5dfeb794ab7492e7c0,KEYS: Fix race between read and revoke
+CVE-2015-8543,3.18.26,P1,yes,,e60ccfd9e596b48d4b9d6e2b5440261c83d10c12,net: add validation for the socket syscall protocol argument
+CVE-2015-8569,3.18.26,,no,CONFIG_PPTP=n,652ed6f6effe13ce2fc0215230517aa01bdbf3e3,pptp: verify sockaddr_len in pptp_bind() and pptp_connect()
+CVE-2015-8575,3.18.26,,no,CONFIG_BT=n,566198569555189eff9c11c67bbaefb1bacc7bfa,bluetooth: Validate socket address length in sco_sock_bind().
+CVE-2016-0728,3.18.26,,no,CONFIG_KEYS=n,d25b4531a808bd0faae3dcd0553421d0570373d1,KEYS: Fix keyring ref leak in join_session_keyring()
+CVE-2013-4312,3.18.27,P1,yes,,a5b9e44af8d3edaf49d14a91cc519a9fba439e67,unix: properly account for FDs passed over unix sockets
+CVE-2015-7566,3.18.27,,no,USB class driver not built,34a893326f0473dbe25c6a128c63e17eba08a71c,USB: serial: visor: fix crash on detecting device without write_urbs
+CVE-2015-7799,3.18.27,,no,CONFIG_ISDN=n,f9e58aab4655efe4f53452977ea29447b7446735,isdn_ppp: Add checks for allocation failure in isdn_ppp_open()
+CVE-2015-8816,3.18.27,P0,yes,,425b3d713f077fc340bad07137104304c22e8f5d,USB: fix invalid memory access in hub_activate()
+CVE-2016-0723,3.18.27,P1,yes,,16c10d77d37d46d0b7db1901136d657777c8caf8,tty: Fix unsafe ldisc reference via ioctl(TIOCGETD)
+CVE-2016-2545,3.18.27,P2,yes,,73c0532426ba7eb55f0015faebb1cad466a656e0,ALSA: timer: Fix double unlink of active_list
+CVE-2016-2547,3.18.27,P2,yes,,f40ee9cf5f69092e63b6f6262d9fd19a24b00bab,ALSA: timer: Harden slave timer list handling
+CVE-2016-2548,3.18.27,P2,yes,,f40ee9cf5f69092e63b6f6262d9fd19a24b00bab,ALSA: timer: Harden slave timer list handling
+CVE-2016-2782,3.18.27,,no,USB class driver not built,01bba7b17a230e9c35239ded7ac942081e6f6b7c,USB: visor: fix null-deref at probe
+CVE-2016-2085,3.18.28,,no,CONFIG_KEYS=n,6702fc0c98d40442f9e74e10c499d68cd96455df,EVM: Use crypto_memneq() for digest comparisons
+CVE-2016-2384,3.18.28,P0,yes,,b4dc014d417de972afd85248c8027380f1166317,ALSA: usb-audio: avoid freeing umidi object twice
+CVE-2017-13167,3.18.28,P2,yes,,0f97e402030cb82e5a5ab9ca9babf323d1bc5b74,ALSA: timer: Fix race at concurrent reads
+CVE-2015-8553,3.18.29,,no,Xen only,3d0ec7c06a1994f71ef7820185a71b7c1d8bbb42,xen/pciback: Don't allow MSI-X ops if PCI_COMMAND_MEMORY is not set.
+CVE-2016-3044,3.18.30,,no,powerpc KVM only,c518a1b39eda7356aebfd514cd8164ed909d995f,KVM: PPC: Book3S HV: Sanitize special-purpose register values on guest exit
+CVE-2015-7513,3.18.31,,no,x86 KVM only,8dc1d26b1bae170d1d11e6460cf745ef10d90bfd,KVM: x86: Reload pit counters for all channels when restoring state
+CVE-2015-8660,3.18.31,,no,filesystem not built,931858a0bce673fad1855373631641c8250f83ea,ovl: fix permission checking for setattr
+CVE-2015-8785,3.18.31,P2,yes,,d48d21de5e8054d38360e09d5f16508c0a17dd62,fuse: break infinite loop in fuse_fill_write_pages()
+CVE-2015-8812,3.18.31,,no,CONFIG_INFINIBAND=n,07508eb3c9a18afdb25b69d68c0fd3dd0698e148,iw_cxgb3: Fix incorrectly returning error on success
+CVE-2015-8970,3.18.31,,no,CONFIG_KEYS=n,1f45c38917129af49a187aae8f2ef76d098d66ca,crypto: algif_skcipher - Require setkey before accept(2)
+CVE-2016-0821,3.18.31,P2,yes,,88965e61d381a0d3cd3e0d49aa5fb6481a9447cc,"include/linux/poison.h: fix LIST_POISON{1,2} offset"
+CVE-2016-2184,3.18.31,P0,yes,,53b7c0ed67fecfb2123a14b4d1ae246fb2807283,ALSA: usb-audio: Fix NULL dereference in create_fixed_stream_quirk()
+CVE-2016-2185,3.18.31,,no,CONFIG_INPUT_ATI_REMOTE2=n,37735ed2c8c12e9671a3742d6b9028bad43852df,Input: ati_remote2 - fix crashes on detecting device with invalid descriptor
+CVE-2016-2186,3.18.31,,no,CONFIG_INPUT_POWERMATE=n,b684cb33d6867e10ba45375a12ef9f3ceb6f0aa7,Input: powermate - fix oops with malicious USB descriptors
+CVE-2016-3138,3.18.31,,no,USB class driver not built,4576d5d818abff73e363027f52da09519573c924,USB: cdc-acm: more sanity checking
+CVE-2016-3157,3.18.31,,no,x86 Xen PV only,9dac025573bbde6e69bd2238b803cdd4d881d83b,x86/iopl/64: Properly context-switch IOPL on Xen PV
+CVE-2016-3689,3.18.31,,no,CONFIG_INPUT_IMS_PCU=n,7ca573e32c0a6634d679540314a80d235f224bfb,Input: ims-pcu - sanity check against missing interfaces
+CVE-2016-6327,3.18.31,,no,CONFIG_INFINIBAND=n,88155b6f0560f43d101cc415c70a17b09046e532,IB/srpt: Simplify srpt_handle_tsk_mgmt()
+CVE-2016-9685,3.18.31,,no,CONFIG_XFS_FS=n,a8dabc28e0b21f70d9e27b04a42efc7f093c7c18,xfs: fix two memory leaks in xfs_attr_list.c error paths
+CVE-2016-3136,3.18.32,,no,USB class driver not built,e8f4639414972d17224cd816be7b89a00840b09e,USB: mct_u232: add sanity checking in probe
+CVE-2016-3137,3.18.32,,no,USB class driver not built,55e18b81b1d3755288aa6234d9439bdd95b3f58f,USB: cypress_m8: add endpoint sanity check
+CVE-2016-3140,3.18.32,,no,USB class driver not built,fb6e2ebb91f21839aa13c40a6f71ac6423e4c64e,USB: digi_acceleport: do sanity checking for the number of ports
+CVE-2016-7914,3.18.32,,no,CONFIG_KEYS=n (assoc_array unused),34caf1dc30b288cc94a0d44e7e9a133de8246062,assoc_array: don't call compare_object() on a node
+CVE-2016-2187,3.18.33,,no,CONFIG_INPUT_GTCO=n,6b314d424e2fda751e4cc330f050ceac2c7edce8,Input: gtco - fix crash on detecting device without endpoints
+CVE-2016-3961,3.18.33,,no,x86 Xen PV only,24b769352bd519d6d932ea070e295e8b13f43af8,x86/mm/xen: Suppress hugetlbfs in PV guests
+CVE-2016-4565,3.18.34,,no,CONFIG_INFINIBAND=n,a34c1651ea7a55f3c0e77c80c3b27605d5a7dfea,IB/security: Restrict use of the write() interface
+CVE-2016-4581,3.18.34,P2,yes,,b688848a01ce5e9ce2a3d62af6e66b09dcd6f78d,propogate_mnt: Handle the first propogated copy being a slave
+CVE-2016-4913,3.18.34,P2,yes,,b8500fc5acce9976a6de1c60daa09f40d148f11d,get_rock_ridge_filename(): handle malformed NM entries
+CVE-2016-9754,3.18.35,P2,yes,,180fbec3621c16c23eb5de917577b9aa5dcb1d57,ring-buffer: Prevent overflow of size in ring_buffer_resize()
+CVE-2016-1583,3.18.36,P2,yes,,70e21269e3ec8e4345e7fcd263f9a8f2a43f42df,proc: prevent stacking filesystems on top
+CVE-2016-2117,3.18.37,,no,CONFIG_ATL2=n,d06f8ffbe758cb0e4ff7ba8e311ef496bcaf9532,atl2: Disable unimplemented scatter/gather feature
+CVE-2016-2847,3.18.37,P1,yes,,be65d29ff7b6246afa8309063cc77ba030d98d17,pipe: limit the per-user amount of pages allocated in pipes
+CVE-2016-3134,3.18.37,P2,yes,,c2a1b8ee3f6a1acf7f19037d13e4031831b05776,netfilter: x_tables: fix unconditional helper
+CVE-2016-3156,3.18.37,P2,yes,,abe3994caa1c1056a2d036bdb613cc8ad282b059,ipv4: Don't do expensive useless work during inetdev destroy.
+CVE-2016-3955,3.18.37,,no,protocol/driver not built,9a71843e3ab0f1ffb766c4074f761ba57e3c12c8,USB: usbip: fix potential out-of-bounds write
+CVE-2016-4470,3.18.37,,no,CONFIG_KEYS=n,4e7a91fe833202b19f58a8c872e7f77592a4b682,KEYS: potential uninitialized variable
+CVE-2016-4485,3.18.37,,no,protocol/driver not built,84aa66876dc5594058a346bf36928d8b652e6a6b,net: fix infoleak in llc
+CVE-2016-4486,3.18.37,P2,yes,,69243164a954a78073a83cb87d2e03254a4810ef,net: fix infoleak in rtnetlink
+CVE-2016-4580,3.18.37,,no,protocol/driver not built,b35237a8295196b3ea3efb36fde887b7b4dffb9a,net: fix a kernel infoleak in x25 module
+CVE-2016-4794,3.18.37,P1,yes,,9e9f68827d7eb85c39503457a37a5dced178f6f4,percpu: fix synchronization between chunk->map_extend_work and chunk destruction
+CVE-2016-4805,3.18.37,P2,yes,,a472ae852324f815b61615c3a2dfb80b40a46c22,ppp: take reference on channels netns
+CVE-2016-4997,3.18.37,,no,SCSI low-level/bsg not built,7ba6a7dfbf7c37aa1984db170a015dded04adc81,netfilter: x_tables: check for bogus target offset
+CVE-2016-4998,3.18.37,,no,SCSI low-level/bsg not built,7ba6a7dfbf7c37aa1984db170a015dded04adc81,netfilter: x_tables: check for bogus target offset
+CVE-2016-5828,3.18.37,,no,powerpc only,8d596e6adb909cebe6290426160b8dedc84c802a,powerpc/tm: Always reclaim in start_thread() for exec() class syscalls
+CVE-2016-5829,3.18.37,,no,CONFIG_HIDDEV=n,6f562d23f3bb941cba33d9ec048f6cb85bf2cd80,"HID: hiddev: validate num_values for HIDIOCGUSAGES, HIDIOCSUSAGES commands"
+CVE-2016-7117,3.18.37,P1,yes,,cdd1fd36f4b67d9fdbeb1a4d16025192d44a3e8b,net: Fix use after free in the recvmmsg exit path
+CVE-2016-7916,3.18.37,P2,yes,,aa9be0d64b75c66a807824705495464369400a01,proc: prevent accessing /proc/<PID>/environ until it's ready
+CVE-2016-9806,3.18.37,P2,yes,,57b26930c7149c9ed86ba29038523a7a23140220,netlink: Fix dump skb leak/double free
+CVE-2016-7911,3.18.38,P1,yes,,b86ef7ef23554d978422ab49366223932ce976d4,block: fix use-after-free in sys_ioprio_get()
+CVE-2016-5400,3.18.39,,no,CONFIG_MEDIA_SUPPORT=n,d380c88d88ed317a7493e5cba85fa0ebecf38ac9,media: fix airspy usb probe error path
+CVE-2016-6197,3.18.39,,no,filesystem not built,5eaee47bcdf4f17e2bdd6105f12b6d5e567e72c4,ovl: verify upper dentry before unlink and rename
+CVE-2016-1237,3.18.40,P2,yes,,6abbd53f83fe94fb2562b3a45ef7770e4dfcde29,posix_acl: Add set_posix_acl
+CVE-2016-5412,3.18.40,,no,powerpc KVM only,15b4c06d13983dcfcbf34f3c2c7de269c8258656,KVM: PPC: Book3S HV: Pull out TM state save/restore into separate procedures
+CVE-2016-6136,3.18.40,P2,yes,,3f4976f0e610b010e9e69ff294212ce6b7fc7ca5,audit: fix a double fetch in audit_log_single_execve_arg()
+CVE-2016-7910,3.18.40,P1,yes,,8bc7adafc3a58801319873cbfa38f4fc8e0047b4,block: fix use-after-free in seq file
+CVE-2017-7495,3.18.40,P1,yes,,aba6b2d882d2bad5e3996b739fa5ae7f62bf8bf6,ext4: fix data exposure after a crash
+CVE-2016-5696,3.18.41,P0,yes,,0efba8d124de904db7766645561a6f39c501f2c1,tcp: make challenge acks less predictable
+CVE-2016-6480,3.18.41,,no,CONFIG_SCSI_AACRAID=n,30c2bbd8a7b7ff3b6849d6ce1a69d4db9e40183b,aacraid: Check size values after double-fetch from user
+CVE-2015-8966,3.18.42,,no,ARM OABI only (arm64),db9e37a1c5f21cec095da9ed53a2c0cbeeb24ee6,[PATCH] arm: fix handling of F_OFD_... in oabi_fcntl64()
+CVE-2016-9178,3.18.43,,no,x86-only get_user_ex (arm64),e58d9a8251584d92976d4cc7f46ab30963c9e99a,fix minor infoleak in get_user_ex()
+CVE-2016-5195,3.18.44,P1,yes,,e45a502bdeae5a075257c4f061d1ff4ff0821354,mm: remove gup_flags FOLL_WRITE games from __get_user_pages()
+CVE-2016-10229,3.18.45,P1,yes,,69335972b1c1c9bd7597fc6080b6eb1bd3fbf774,udp: properly support MSG_PEEK with truncated buffers
+CVE-2016-7042,3.18.45,,no,CONFIG_KEYS=n,abe571f80e33d3df7741d15cd03a8b95a93f659f,KEYS: Fix short sprintf buffer in /proc/keys show function
+CVE-2016-8633,3.18.45,,no,CONFIG_FIREWIRE_NET=n,dff462fc98d649a51557491d02f5c16f2127970b,firewire: net: guard against rx buffer overflows
+CVE-2015-8956,3.18.46,,no,CONFIG_BT=n,ee79b622f43bab46bd6ff778b3cd2e4af4784bc2,Bluetooth: Fix potential NULL dereference in RFCOMM bind callback
+CVE-2016-6828,3.18.46,P0,yes,,fa9b0c17c956a6d2bb3e99ad274c32e86adfddcf,tcp: fix use after free in tcp_xmit_retransmit_queue()
+CVE-2016-7425,3.18.46,,no,CONFIG_SCSI_ARCMSR=n,6371e0cdc5be8671461f136dc1df9a36bdb5292a,scsi: arcmsr: Buffer overflow in arcmsr_iop_message_xfer()
+CVE-2016-8655,3.18.46,P1,yes,,5c120b79dd6601a987eb33214f2686e5b75f3c3e,packet: fix race condition in packet_set_ring
+CVE-2016-10088,3.18.47,,no,CONFIG_CHR_DEV_SG/BLK_DEV_BSG=n,a861b9212ab44dc9483259b1f9376e74bae2ad37,sg_write()/bsg_write() is not fit to be called under KERNEL_DS
+CVE-2016-8666,3.18.47,P2,yes,,dd4fff23f0f4c7c5414f50c091c78a7e423f85da,tunnels: Don't apply GRO to multiple layers of encapsulation.
+CVE-2016-2188,3.18.49,,no,USB class driver not built,ce55817c633e5807f4645a60163f6cbc3f5af63b,USB: iowarrior: fix NULL-deref at probe
+CVE-2016-8405,3.18.49,P2,yes,,59ab6ac4aa855c38f40ab9e6501b17189e7b4089,fbdev: color map copying bounds checking
+CVE-2016-9555,3.18.49,,no,CONFIG_IP_SCTP=n,ffdfbf56e46b2968e85cc389664ee9224f3ff049,sctp: validate chunk len before actually using it
+CVE-2017-2618,3.18.49,P1,yes,,0f436bf3f81b0674414d198a01bffc4ecae4590e,selinux: fix off-by-one in setprocattr
+CVE-2017-2636,3.18.49,,no,protocol/driver not built,477f7e81b30f70d45659c2c6e6aef4f79fbd15b7,tty: n_hdlc: get rid of racy n_hdlc.tbuf
+CVE-2017-5897,3.18.49,,no,CONFIG_IPV6_GRE=n,3bbaa8061856b883c9deb16d1942188ef2608850,ip6_gre: fix ip6gre_err() invalid reads
+CVE-2017-5970,3.18.49,P0,yes,,eeae5e030fcdba3a924bb951c4c62ef40dfc8974,ipv4: keep skb->dst around in presence of IP options
+CVE-2017-5986,3.18.49,,no,CONFIG_IP_SCTP=n,a4a3d26a1d4e0702b1b54c8dc9c56ed61742568a,sctp: avoid BUG_ON on sctp_wait_for_sndbuf
+CVE-2017-6074,3.18.49,,no,CONFIG_IP_DCCP=n,ae803f3ffbca73a8ba65759c71ce30f3bbcda83f,dccp: fix freeing skb too early for IPV6_RECVPKTINFO
+CVE-2017-6214,3.18.49,P1,yes,,337bb5f3fd50872e4bdac43c097fd7bf926f24a9,tcp: avoid infinite loop in tcp_splice_read()
+CVE-2017-6345,3.18.49,,no,protocol/driver not built,5b8f1011ac5363df3a6051223d146144f4af47d7,net/llc: avoid BUG_ON() in skb_orphan()
+CVE-2017-7184,3.18.49,P1,yes,,281edc5a3778cd551e688e8d0c88d05d948b4faf,xfrm_user: validate XFRM_MSG_NEWAE XFRMA_REPLAY_ESN_VAL replay_window
+CVE-2017-7308,3.18.49,P1,yes,,eeead20a3d208b411eab883f9ba3180c15b566d0,net/packet: fix overflow in check for priv area size
+CVE-2017-8924,3.18.49,,no,USB class driver not built,1f5371cc84232fc5b3140713d681b35641c56c17,USB: serial: io_ti: fix information leak in completion handler
+CVE-2017-8925,3.18.49,,no,USB class driver not built,d064efcbd6ed7526ad075a9ad5ef28b1d398ab46,USB: serial: omninet: fix reference leaks at open
+CVE-2017-2596,3.18.50,,no,CONFIG_KVM=n,aa5b35bad59a2691db0ea739fb79be82aff5cbb8,kvm: fix page struct leak in handle_vmon
+CVE-2017-6353,3.18.50,,no,CONFIG_IP_SCTP=n,02415182a92ccd72b60c22e723a56a74a566d2e7,sctp: deny peeloff operation on asocs with threads sleeping on it
+CVE-2017-7187,3.18.50,,no,CONFIG_CHR_DEV_SG=n,a3bc27d43f5b5e8cac993b447eeb2f2efb1493af,scsi: sg: check length passed to SG_NEXT_CMD_LEN
+CVE-2017-7261,3.18.50,,no,CONFIG_DRM_VMWGFX=n,6e7f776a49aabe3c734f9d94ba2522961a91c6b7,drm/vmwgfx: NULL pointer dereference in vmw_surface_define_ioctl()
+CVE-2017-7294,3.18.50,,no,CONFIG_DRM_VMWGFX=n,2e29dce3fd6c31f5d0e623e5a929c06d5436ee60,drm/vmwgfx: fix integer overflow in vmw_surface_define_ioctl()
+CVE-2017-7616,3.18.50,P1,yes,,c01cf9586df930e721f608578329496081c9624a,mm/mempolicy.c: fix error handling in set_mempolicy and mbind.
+CVE-2017-7618,3.18.50,P2,yes,,c2798145e731005fa1e6ee2a489940c1dd8f03e4,crypto: ahash - Fix EINPROGRESS notification callback
+CVE-2017-7889,3.18.50,,no,arch/feature not built (arm64),be63d158bba15c468d474808b60e6ac2417a933b,mm: Tighten x86 /dev/mem with zeroing reads
+CVE-2017-8064,3.18.50,,no,CONFIG_MEDIA_SUPPORT=n,c59f266fa87e8413db93040348db33f1995bb2b4,dvb-usb-v2: avoid use-after-free
+CVE-2016-7913,3.18.51,,no,CONFIG_MEDIA_SUPPORT=n,dff2b1e346b783fb69d736b887005e6d41f34d9b,xc2028: avoid use after free
+CVE-2016-9083,3.18.51,,no,CONFIG_VFIO=n,898ef37a73f7ad23cd5030d1c845d9b00da20721,"vfio/pci: Fix integer overflows, bitmask check"
+CVE-2016-9084,3.18.51,,no,CONFIG_VFIO=n,898ef37a73f7ad23cd5030d1c845d9b00da20721,"vfio/pci: Fix integer overflows, bitmask check"
+CVE-2016-9120,3.18.51,P1,yes,,f63514257efd74108711e1d4e2ca462968170c42,staging/android/ion : fix a race condition in the ion driver
+CVE-2016-9604,3.18.51,,no,CONFIG_KEYS=n,44c037827f0aeddbbbb323930fa3d09a7b4fffca,KEYS: Disallow keyrings beginning with '.' to be joined as session keyrings
+CVE-2017-2671,3.18.51,P2,yes,,4e340a02d59c230b99460574c6a8fc87dc1a9a47,ping: implement proper locking
+CVE-2017-7472,3.18.51,,no,CONFIG_KEYS=n,6efda2501976288f10895834ba2782d0df093441,KEYS: fix keyctl_set_reqkey_keyring() to not leak thread keyrings
+CVE-2014-9940,3.18.52,P2,yes,,42f268023df2919f484d8b46df34b35323bd3358,regulator: core: Fix regualtor_ena_gpio_free not to access pin after freeing
+CVE-2015-3288,3.18.52,P1,yes,,47ce8d2e1fcaac31cbe7d84882c8a6b29e201398,mm: avoid setting up anonymous pages into file mapping
+CVE-2015-9004,3.18.52,P1,yes,,5a7b3b1ec16b6bfa57752d37292988e64fcdd172,perf: Tighten (and fix) the grouping condition
+CVE-2016-10200,3.18.52,,no,CONFIG_L2TP=n,dc57f1e18b8f484d013fd21bc89b7a5b88c3d460,"l2tp: fix racy SOCK_ZAPPED flag check in l2tp_ip{,6}_bind()"
+CVE-2016-7097,3.18.52,P1,yes,,d8333c045f045385a914013a220cd1ed54c88d48,posix_acl: Clear SGID bit when setting file permissions
+CVE-2016-9793,3.18.52,P2,yes,,29fc5d17f274ccab37404882875f9045be10f6bd,net: avoid signed overflows for SO_{SND|RCV}BUFFORCE
+CVE-2016-9794,3.18.52,P2,yes,,e6ef3b68c00023ebd52721b6ad210c4af3af6d35,ALSA: pcm : Call kill_fasync() in stream lock
+CVE-2017-0750,3.18.52,,no,CONFIG_F2FS_FS=n,010336c795e15f358c5bd7054175833ee0203121,f2fs: do more integrity verification for superblock
+CVE-2017-10661,3.18.52,P1,yes,,4636aad518296b169546b4144eceb27d324f0fa5,timerfd: Protect the might cancel mechanism proper
+CVE-2017-7645,3.18.52,,no,CONFIG_NFSD=n,a1552b1c52d9c2ed48b21f722c1bd7f0ffbdb398,nfsd: check for oversized NFSv2/v3 arguments
+CVE-2017-10662,3.18.53,,no,CONFIG_F2FS_FS=n,27f411c7ee241d194cd5fd3271d83089d70b2c20,f2fs: sanity check segment count
+CVE-2015-8955,3.18.54,P2,yes,,e00f6efe21bd34a7dd1cc3520f6155180e3d8125,arm64: perf: reject groups spanning multiple HW PMUs
+CVE-2015-8962,3.18.54,,no,CONFIG_CHR_DEV_SG=n,6d523f23bb2dadfebcda1636ee2d534259566c6c,sg: Fix double-free when drives detach during SG_IO
+CVE-2015-8963,3.18.54,P1,yes,,6ee649ba055c71907226820070cde13079d3d49d,perf: Fix race in swevent hash
+CVE-2015-8967,3.18.54,P2,yes,,c8f417a2d6af99b2735709cb60562e0a7c8ddf62,arm64: make sys_call_table const
+CVE-2016-0758,3.18.54,,no,CONFIG_KEYS=n,7da78079bae82dbaac4b88e0cb1f875e0dc52775,KEYS: Fix ASN.1 indefinite length object parsing
+CVE-2016-2053,3.18.54,,no,CONFIG_KEYS=n,c66d9b77cbda5e0e71ae0dfabaa94b27ca3f6b63,ASN.1: Fix non-match detection failure on data overrun
+CVE-2016-2544,3.18.54,P2,yes,,6d4025862a080579362994eeb0095eb78dd801f2,ALSA: seq: Fix race at timer setup and close
+CVE-2016-2546,3.18.54,P2,yes,,19f609798f7ea6392028091b42dd53b3c7f9368f,ALSA: timer: Fix race among timer ioctls
+CVE-2016-3951,3.18.54,,no,USB class driver not built,2ed13588499c3f5f0dc6b6851471178ca5a44576,cdc_ncm: do not call usbnet_link_change from cdc_ncm_bind
+CVE-2016-4569,3.18.54,P2,yes,,bbcf19d306745832e043e02c7b3d4f4fad82d61e,ALSA: timer: Fix leak in SNDRV_TIMER_IOCTL_PARAMS
+CVE-2016-4578,3.18.54,P2,yes,,bbb79774fcea8b92df051d1d68fcba18d884f860,ALSA: timer: Fix leak in events via snd_timer_user_ccallback
+CVE-2016-6786,3.18.54,P1,yes,,33b738f7c5a704b729b2502669cf71c7b25ab7d6,perf: Fix event->ctx locking
+CVE-2016-6787,3.18.54,P1,yes,,33b738f7c5a704b729b2502669cf71c7b25ab7d6,perf: Fix event->ctx locking
+CVE-2016-7915,3.18.54,P2,yes,,18377401142c65b0afe0168502fd335697e47936,HID: core: prevent out-of-bound readings
+CVE-2015-8964,3.18.55,P1,yes,,f98d89173f9e16dba893806e2b99c1d7e0a10ac6,tty: Prevent ldisc drivers from re-using stale tty fields
+CVE-2017-1000363,3.18.55,,no,CONFIG_PRINTER=n,f4615841767ff7908599e643f587078670a390c9,char: lp: fix possible integer overflow in lp_setup()
+CVE-2017-18360,3.18.55,,no,USB class driver not built,2a635375148830a2caa5716ba2bd0a223c582228,USB: serial: io_ti: fix div-by-zero in set_termios
+CVE-2017-7487,3.18.55,,no,CONFIG_IPX=n,53b5e27b585ecd9d657617890887cb1686153295,ipx: call ipxitf_put() in ioctl error path
+CVE-2017-18221,3.18.56,,no,protocol/driver not built,aef16f4c9831727766de1b4887ce452c3a915368,mlock: fix mlock count can not decrease in race condition
+CVE-2017-8890,3.18.56,,no,CONFIG_IP_DCCP=n,4bb305d07ffbc616d1594e2144cc2417eb44fcd5,dccp/tcp: do not inherit mc_list from parent
+CVE-2017-9074,3.18.56,P0,yes,,5ca68dbb5a6bb81c6119a6808e1dd8d1a53febc8,ipv6: Prevent overrun when parsing v6 header options
+CVE-2017-9075,3.18.56,,no,CONFIG_IP_SCTP=n,56fd34c68676131cce13b0031990e49e80d3ee99,sctp: do not inherit ipv6_{mc|ac|fl}_list from parent
+CVE-2017-9242,3.18.56,P0,yes,,1d31de23f617332861b9767ad137b73e953be60b,ipv6: fix out of bound writes in __ip6_append_data()
+CVE-2017-1000380,3.18.57,P2,yes,,d96c363ff004fbb42f728b3e4299a71c4e567568,ALSA: timer: Fix race between read and ioctl
+CVE-2017-15274,3.18.57,,no,CONFIG_KEYS=n,8206e0a25785c58e88a444fed1d4646da60b14a4,KEYS: fix dereferencing NULL payload with nonzero length
+CVE-2017-7346,3.18.57,,no,CONFIG_DRM_VMWGFX=n,e3648dc366b1469972f02e023e38bf70f143dc0a,drm/vmwgfx: limit the number of mip levels in vmw_gb_surface_define_ioctl()
+CVE-2017-1000364,3.18.58,P1,yes,,d4712eb79b17d85c9e354efa2d3156ce50736128,"mm: larger stack guard gap, between vmas"
+CVE-2017-1000379,3.18.58,P1,yes,,d4712eb79b17d85c9e354efa2d3156ce50736128,"mm: larger stack guard gap, between vmas"
+CVE-2017-1000365,3.18.59,P1,yes,,2dff2164d171e9c27f2f7fa778d408ecf4d1e1ea,fs/exec.c: account for argv/envp pointers
+CVE-2017-7482,3.18.59,,no,CONFIG_AF_RXRPC=n,9c3a8a0f69e07fbbe31024ebe72b1c8d7607033e,rxrpc: Fix several cases where a padded len isn't checked in ticket decode
+CVE-2017-18017,3.18.60,P2,yes,,f4549a698a531c0014c62e40e521ffa030cf31e0,netfilter: xt_TCPMSS: add more sanity tests on tcph->doff
+CVE-2017-11176,3.18.61,,no,CONFIG_POSIX_MQUEUE=n,7eaa7e5baa0ffb3b6ca28798f0e014f43c004f47,mqueue: fix a use-after-free in sys_mq_notify()
+CVE-2017-12146,3.18.61,P1,yes,,61b0972bd40ae77fabb019e26402ac17906fcb15,driver core: platform: fix race condition with driver_override
+CVE-2017-11089,3.18.62,,no,arch/feature not built (arm64),55520ec2ca6a85ab1e2a51210f414cf0f9f5fe7a,cfg80211: Define nla_policy for NL80211_ATTR_LOCAL_MESH_POWER_MODE
+CVE-2017-7541,3.18.62,,no,CONFIG_MAC80211/vendor wifi not built,ae10cf5c80b897b3a46ef1bdf77a52dd84bd336d,brcmfmac: fix possible buffer overflow in brcmf_cfg80211_mgmt_tx()
+CVE-2018-14634,3.18.62,P1,yes,,915d918369390e5746794ca0d38a40ba05745b4a,exec: Limit arg stack to at most 75% of _STK_LIM
+CVE-2019-9457,3.18.62,P1,yes,,915d918369390e5746794ca0d38a40ba05745b4a,exec: Limit arg stack to at most 75% of _STK_LIM
+CVE-2017-11473,3.18.63,,no,arch/feature not built (arm64),7f377fc4008980278edbfd9d70ef9aa91ffa8448,x86/acpi: Prevent out of bound access caused by broken ACPI tables
+CVE-2017-18079,3.18.63,,no,x86 i8042 not built,f6be94430be69b9abd5b7b357210e1f4ef4d1eea,Input: i8042 - fix crash at boot time
+CVE-2017-10663,3.18.64,,no,CONFIG_F2FS_FS=n,64133595b549c1036ffe8598f4c53aa355d9e3f1,f2fs: sanity check checkpoint segno and blkoff
+CVE-2017-12762,3.18.64,,no,CONFIG_ISDN=n,4cb1585c473ec9a5a98104e79ed07cee7de3729e,isdn/i4l: fix buffer overflow
+CVE-2017-15868,3.18.64,,no,CONFIG_BT=n,f6237750acc4494cb28e174289d5d335313ff2ea,Bluetooth: bnep: bnep_add_connection() should verify that it's dealing with l2cap socket
+CVE-2017-7533,3.18.64,P2,yes,,a1dbc0979b4f92f3b0d0bb86671639e09315f43c,dentry name snapshots
+CVE-2017-7542,3.18.64,P0,yes,,41d33a5b803bd1c3ca84f5bfb9ab77d06ce09fca,ipv6: avoid overflow of offset in ip6_find_1stfragopt
+CVE-2017-1000,3.18.65,P0,yes,,4ac8dc208caf85675f0f745783e0a3f88dac0008,udp: consistently apply ufo or fragmentation
+CVE-2017-1000111,3.18.65,P1,yes,,f2ce502f866556d24ebfae84673c9ef211b79906,packet: fix tp_reserve race in packet_set_ring
+CVE-2017-1000112,3.18.65,P0,yes,,4ac8dc208caf85675f0f745783e0a3f88dac0008,udp: consistently apply ufo or fragmentation
+CVE-2017-14140,3.18.67,P1,yes,,8cf95002f0c9afe06fa1e4b9ebb0e10a77c481b1,Sanitize 'move_pages()' permission checks
+CVE-2018-10675,3.18.67,P1,yes,,d5a76b2ba6871a875fdcd598548176ce3464aa30,mm/mempolicy: fix use after free when calling get_mempolicy
+CVE-2017-9725,3.18.69,P1,yes,,f0c8d9367c9232fa54e592bad095140f987031fd,mm: cma: fix incorrect type conversion for size during dma allocation
+CVE-2017-11600,3.18.70,P1,yes,,0d400015a32c703273b90601574956a4452a9311,xfrm: policy: check policy direction value
+CVE-2017-1000251,3.18.71,,no,CONFIG_BT=n,090aa4651522ec35776896abe31c0a221689a14f,Bluetooth: Properly check L2CAP config option output buffer length
+CVE-2017-14340,3.18.71,,no,CONFIG_XFS_FS=n,b766f0849a52e235268f362b7d8ec8bc36cdc7f0,xfs: XFS_IS_REALTIME_INODE() should be false if no rt device present
+CVE-2017-9984,3.18.71,,no,CONFIG_SND_MSND=n,bceac1033cd99ff5d2aaa69c700367f866bf6f04,ALSA: msnd: Optimize / harden DSP and MIDI loops
+CVE-2017-9985,3.18.71,,no,CONFIG_SND_MSND=n,bceac1033cd99ff5d2aaa69c700367f866bf6f04,ALSA: msnd: Optimize / harden DSP and MIDI loops
+CVE-2017-0627,3.18.72,,no,CONFIG_MEDIA_SUPPORT=n,15ac0595018f5fdfbec2a23574b81a01c73ee5e1,media: uvcvideo: Prevent heap overflow when accessing mapped controls
+CVE-2017-14051,3.18.72,,no,CONFIG_SCSI_QLA2XXX=n,78d88643d218fccb0fcf7fa957e785d4048e35cb,scsi: qla2xxx: Fix an integer overflow in sysfs code
+CVE-2017-14106,3.18.72,P0,yes,,1722ca90e1b88e6b7f0824908828e2462d7405ac,tcp: initialize rcv_mss to TCP_MIN_MSS instead of 0
+CVE-2017-14991,3.18.72,,no,CONFIG_CHR_DEV_SG=n,9793679d8dc92d1d8a187d023d2d7a17dd9348b5,scsi: sg: fixup infoleak when using SG_GET_REQUEST_TABLE
+CVE-2017-12153,3.18.73,P2,yes,,65e3664fc6087d2941e940e38beb39920e9ae032,nl80211: check for the required netlink attributes presence
+CVE-2017-12154,3.18.73,,no,x86 KVM only,6ad74630c016ef823f2720671ee4db641d35fd2c,kvm: nVMX: Don't allow L2 to access the hardware CR8
+CVE-2017-12192,3.18.73,,no,CONFIG_KEYS=n,6ea8051f42d965e3197ef31d4f54f75525b9439c,KEYS: prevent KEYCTL_READ on negative key
+CVE-2017-14156,3.18.73,,no,CONFIG_FB_ATY=n,2d53f0b14066d798104411f13442afc20bdea4d6,video: fbdev: aty: do not leak uninitialized padding in clk to userspace
+CVE-2017-14489,3.18.73,,no,CONFIG_ISCSI_TCP=n,fec4cd33779f9edd7ab2d0d5ad7228f55f3f6887,scsi: scsi_transport_iscsi: fix the issue that iscsi_if_rx doesn't parse nlmsg properly
+CVE-2017-15537,3.18.73,,no,arch/feature not built (arm64),f23ec06d527c9cd90552a68c748bcb5aa942ee87,x86/fpu: Don't let userspace set bogus xcomp_bv
+CVE-2017-18270,3.18.73,,no,CONFIG_KEYS=n,e3b663ba2ddd8f30ba92d4e6898637bb526dba70,KEYS: prevent creating a different user's keyrings
+CVE-2020-14353,3.18.73,,no,CONFIG_KEYS=n,e3b663ba2ddd8f30ba92d4e6898637bb526dba70,KEYS: prevent creating a different user's keyrings
+CVE-2016-8650,3.18.74,P2,yes,,703937f005ea09ac2b6da593a9cec0befcb7b22a,mpi: Fix NULL ptr dereference in mpi_powm()
+CVE-2017-13215,3.18.74,,no,SCSI low-level/bsg not built,36c84b22ac8aa041cbdfbe48a55ebb32e3521704,crypto: algif_skcipher - Load TX SG list after waiting
+CVE-2016-10208,3.18.75,P2,yes,,2ce649fdacd53afc430565e18124d7d72be92cb3,ext4: validate s_first_meta_bg at mount time
+CVE-2017-16526,3.18.75,,no,protocol/driver not built,4a8d502989094b0825bb11240bc12e4d9cc5c65b,uwb: properly check kthread_run return value
+CVE-2017-16529,3.18.75,P0,yes,,ee44ff5445ae449570427baa534bfba2abba7545,ALSA: usb-audio: Check out-of-bounds access by corrupted buffer descriptor
+CVE-2017-16530,3.18.75,,no,CONFIG_USB_UAS=n,8f0a7703ff9e3a5553134c3d9a20573624802541,USB: uas: fix bug in handling of alternate settings
+CVE-2017-16531,3.18.75,P0,yes,,0502bf54bd01e8dbf4a057fe76f974074b5fb7e6,USB: fix out-of-bounds in usb_set_configuration
+CVE-2016-2543,3.18.76,P2,yes,,954e2ed41fec684048824230eb51bed0eae449ba,ALSA: seq: Fix missing NULL check at remove_events ioctl
+CVE-2017-12190,3.18.76,P1,yes,,d7795bf6a9d8b004dbbd1f081f3eff18ff49276d,fix unbalanced page refcounting in bio_map_user_iov
+CVE-2017-15265,3.18.76,P2,yes,,035e6d0b5b192ff5e168ed322304d29db108d790,ALSA: seq: Fix use-after-free at creating a port
+CVE-2017-16525,3.18.76,,no,CONFIG_USB_SERIAL=n,8ae04f638496b7a9b0381aecf5c47dcb5a3bd6fc,USB: serial: console: fix use-after-free after failed setup
+CVE-2017-16527,3.18.76,P0,yes,,9d263dba25284b31f2544970964decf65b79a2e8,ALSA: usb-audio: Kill stray URB at exiting
+CVE-2017-16533,3.18.76,P0,yes,,f4cf5d75416ae3d79e03179fe6f4b9f1231ae42c,HID: usbhid: fix out-of-bounds bug
+CVE-2017-15649,3.18.77,P1,yes,,b0763909b4538894bb47614656c75f2a233c40d2,"packet: in packet_do_bind, test fanout with bind_lock held"
+CVE-2018-9568,3.18.77,P1,yes,,bc8a5a45208d335de143643e51358c8299bce0f3,net: Set sk_prot_creator when cloning sockets to the right proto
+CVE-2017-15299,3.18.78,,no,CONFIG_KEYS=n,98c4e5cae5204c1114390219331ddd649d78a5a7,KEYS: don't let add_key() update an uninstantiated key
+CVE-2017-16535,3.18.78,P0,yes,,7c1c88e160ed14dfb02cb35369e27abe01eb2ca5,USB: core: fix out-of-bounds access bug in usb_get_bos_descriptor()
+CVE-2017-12193,3.18.79,,no,CONFIG_KEYS=n (assoc_array unused),38dc93fa84026ef8711827fb7063744e7197b887,assoc_array: Fix a buggy node-splitting case
+CVE-2017-16643,3.18.79,,no,CONFIG_INPUT_GTCO=n,9c73743447f244eb0e7422a285dc907283d3630e,Input: gtco - fix potential out-of-bound access
+CVE-2015-9016,3.18.80,P1,yes,,b6885d31d1c6b6f4ccd50535d24dbe5c3d8a7d7b,blk-mq: fix race between timeout and freeing request
+CVE-2017-13080,3.18.82,,no,CONFIG_MAC80211/vendor wifi not built,6891c6fd2a500d1f39d1426765f610bdc2c2a39d,mac80211: accept key reinstall without changing anything
+CVE-2017-16532,3.18.82,,no,USB class driver not built,32530efaed51e4df01e2bc151822143d23ae403a,usb: usbtest: fix NULL pointer dereference
+CVE-2017-16645,3.18.82,,no,CONFIG_INPUT_IMS_PCU=n,c0f26c8f0562869e43e5001bed22817e6019d456,Input: ims-psu - check if CDC union descriptor is sane
+CVE-2018-7191,3.18.82,P2,yes,,638c8339e05eb7eee584dfe4b3102376cf35664b,tun: call dev_get_valid_name() before register_netdevice()
+CVE-2017-16537,3.18.83,,no,CONFIG_MEDIA_SUPPORT=n,b02dac504efc353e1e8507c10f835f09757b0068,media: imon: Fix null-ptr-deref in imon_probe
+CVE-2017-16646,3.18.83,,no,CONFIG_MEDIA_SUPPORT=n,49fc34138b882bb1c6f2ba20df5339bca8a9167e,media: dib0700: fix invalid dvb_detach argument
+CVE-2017-15115,3.18.84,,no,CONFIG_IP_SCTP=n,39c3fff9ef51ba9f2748f37ad7d9cfef365e87fe,sctp: do not peel off an assoc from one netns to another one
+CVE-2017-18204,3.18.84,,no,CONFIG_OCFS2_FS=n,f72e2ba19765ec94ab1b704bce53c3d1ca13202e,ocfs2: should wait dio before inode lock in ocfs2_setattr()
+CVE-2017-9076,3.18.84,,no,CONFIG_IP_DCCP=n,3f45934ed0bd864f878a78c3dfbd1ad437ba427f,ipv6/dccp: do not inherit ipv6_mc_list from parent
+CVE-2017-9077,3.18.84,,no,CONFIG_IP_DCCP=n,3f45934ed0bd864f878a78c3dfbd1ad437ba427f,ipv6/dccp: do not inherit ipv6_mc_list from parent
+CVE-2017-18203,3.18.85,P1,yes,,84cc7b5d26c17384f29b25a1ba4d42e2e820043a,dm: fix race between dm_get_from_kobject() and __dm_destroy()
+CVE-2017-1000405,3.18.86,P1,yes,,8b37803c5fc0e2c3cbf9f03ce7bd5f376beebe2f,"mm, thp: Do not make page table dirty unconditionally in touch_p[mu]d()"
+CVE-2017-16939,3.18.86,P2,yes,,8586e18413441d265f0ff536378d6ef358d18853,ipsec: Fix aborted xfrm policy dump crash
+CVE-2017-18208,3.18.86,P1,yes,,d5ec57c35ac4eeee9b18fb31a953281e63672c0f,mm/madvise.c: fix madvise() infinite loop under special circumstances
+CVE-2017-0861,3.18.88,P2,yes,,14416b2c878b989674761118db8072bf7f0c9501,ALSA: pcm: prevent UAF in snd_pcm_info
+CVE-2017-1000407,3.18.88,,no,x86 KVM only,7389171fdc5976066573edd1fcf6c9a81d8df90f,KVM: VMX: remove I/O port 0x80 bypass on Intel hosts
+CVE-2017-17807,3.18.88,,no,CONFIG_KEYS=n,228014b20bd8902b05942ce4db4197ce345296f3,KEYS: add missing permission check for request_key() destination
+CVE-2018-7492,3.18.88,,no,CONFIG_RDS=n,6d40c9bf5733c9c6db79e0e6d398371955b525af,rds: Fix NULL pointer dereference in __rds_rdma_map
+CVE-2017-16914,3.18.89,,no,protocol/driver not built,f749066bec4019a7a5f7eee22b56314958161c1e,usbip: fix stub_send_ret_submit() vulnerability to null transfer_buffer
+CVE-2017-17558,3.18.89,P0,yes,,dd3ad5f60d520da135bf4dce5adcecf400e2db64,USB: core: prevent malicious bNumInterfaces overflow
+CVE-2017-17805,3.18.89,,no,crypto user API off / unused,ebd52f8b6422b920b4d1697d90679a2bb4b48a0b,crypto: salsa20 - fix blkcipher_walk API usage
+CVE-2017-17806,3.18.89,,no,crypto user API off / unused,252b343a9789151293ad1da4a1ac0851bf31a22e,crypto: hmac - require that the underlying hash algorithm is unkeyed
+CVE-2017-17449,3.18.91,P2,yes,,5594e3eba3ee62dd06c317086c4ea0491d5502c7,netlink: Add netns check on taps
+CVE-2017-18595,3.18.91,P2,yes,,f9e16c238bd6da1d858d50c1ab81c8431578877a,tracing: Fix possible double free on failure of allocating trace buffer
+CVE-2018-18386,3.18.91,P1,yes,,95a9e2bf54b89e00a989c4c6c83efbd3cb972516,n_tty: fix EXTPROC vs ICANON interaction with TIOCINQ (aka FIONREAD)
+CVE-2017-1000410,3.18.92,,no,CONFIG_BT=n,e1ed1d1e0af521d54957953de2c7276b9cb24033,Bluetooth: Prevent stack info leak from the EFS element.
+CVE-2017-13216,3.18.92,P1,yes,,6dc42f889217a0a077bc75c6fa5239ade762fff4,staging: android: ashmem: fix a race condition in ASHMEM_SET_SIZE ioctl
+CVE-2017-6001,3.18.92,P1,yes,,2f9cf5cd5580046fe9ff97dae32f9c753500d4ea,perf/core: Fix concurrent sys_perf_event_open() vs. 'move_group' race
+CVE-2018-5332,3.18.92,,no,CONFIG_RDS=n,a7b25c9f6ea92d582bda195eca561b9cb605ea91,RDS: Heap OOB write in rds_message_alloc_sgs()
+CVE-2018-5333,3.18.92,,no,CONFIG_RDS=n,3396f2bef5ede06f73c0be43975ce837767785ed,RDS: null pointer dereference in rds_atomic_free_op
+CVE-2017-17448,3.18.93,,no,CONFIG_NETFILTER_NETLINK_CTHELPER=n,f4ba1d0e4366d63d1d09c024e8befc99c642e84b,netfilter: nfnetlink_cthelper: Add missing permission checks
+CVE-2017-17450,3.18.93,,no,CONFIG_NETFILTER_XT_MATCH_OSF=n,115e3505bbd683a01496860646fa632e6533b4e3,netfilter: xt_osf: Add missing permission checks
+CVE-2018-6927,3.18.93,P1,yes,,ad211e59c68389b9203f3834c65da7bfe9e6874a,futex: Prevent overflow by strengthen input validation
+CVE-2018-1000004,3.18.94,P2,yes,,6aab3aa52366a0051e5abf8aae4616c42053fd8e,ALSA: seq: Make ioctls race-free
+CVE-2018-5344,3.18.94,P1,yes,,524a6efbd1234439ba00176006ed95ad7d007da6,loop: fix concurrent lo_open/lo_release
+CVE-2017-13305,3.18.95,,no,CONFIG_KEYS=n,99a223bcec506dbd8de7aa3c16995b71d3ca7bb6,KEYS: encrypted: fix buffer overread in valid_master_desc()
+CVE-2017-16538,3.18.95,,no,CONFIG_MEDIA_SUPPORT=n,84882420c73f959fdbad90e538a6d1644c6703dc,media: dvb-usb-v2: lmedm04: Improve logic checking of warm start
+CVE-2017-16911,3.18.95,,no,protocol/driver not built,67ad0235bacc1af72dad6eac6c5ac1a072b905f7,usbip: prevent vhci_hcd driver from leaking a socket pointer address
+CVE-2017-16912,3.18.95,,no,protocol/driver not built,385e124b45fe46960de2fd280fc5a99d3e7706dc,usbip: fix stub_rx: get_pipe() to validate endpoint number
+CVE-2017-16913,3.18.95,,no,protocol/driver not built,eebf31529012289ec20fea84e4e6fd188176be13,usbip: fix stub_rx: harden CMD_SUBMIT path to handle malicious input
+CVE-2017-18344,3.18.95,P1,yes,,28ef9653c18539f8123dd668ad3b28289ec0514a,posix-timer: Properly check sigevent->sigev_notify
+CVE-2017-8824,3.18.95,,no,CONFIG_IP_DCCP=n,d2baa5e59786136454e3baf3cb7c9d606ab8d508,dccp: CVE-2017-8824: use-after-free in DCCP code
+CVE-2018-5750,3.18.95,,no,arch/feature not built (arm64),0a0e3ffb0a1445a756cc91cd9f03b1ac3abd2e32,ACPI: sbshc: remove raw pointer from printk() message
+CVE-2018-7566,3.18.96,P1,yes,,66776836486554f2767e04a6e196e9af69f13677,ALSA: seq: Fix racy pool initializations
+CVE-2018-5803,3.18.99,,no,CONFIG_IP_SCTP=n,5b77504ae15267e8bc68b2622a7554076fe03e3b,sctp: verify size of a new chunk in _sctp_make_chunk()
+CVE-2018-1068,3.18.100,,no,CONFIG_BRIDGE_NF_EBTABLES=n,c80a9f329cb358cf2ae967c866d883264d218b7b,netfilter: ebtables: CONFIG_COMPAT: don't trust userland offsets
+CVE-2018-7995,3.18.100,,no,arch/feature not built (arm64),bbf594868f37cfd50d4289a01a9e25151b9a26cf,x86/MCE: Serialize sysfs changes
+CVE-2019-9456,3.18.100,,no,CONFIG_USB_MON=n,d6d68ab0ad44f6cf7c8621c91f29d351618ac96e,usb: usbmon: Read text within supplied buffer size
+CVE-2017-17975,3.18.103,,no,CONFIG_MEDIA_SUPPORT=n,d22df065dae66f6a892af8802961801deaa90356,media: usbtv: prevent double free in error case
+CVE-2018-1000199,3.18.103,P1,yes,,8f7db030a6398638515c645184ad261d9ea58559,"perf/hwbp: Simplify the perf-hwbp code, fix documentation"
+CVE-2018-1087,3.18.103,,no,x86 KVM only,e7dc809e8042cf3d2c48ffa616941a8b11d3beba,kvm/x86: fix icebp instruction handling
+CVE-2018-1130,3.18.103,,no,CONFIG_IP_DCCP=n,e717aef0e7ed299b43812cd1a2bcf5888eafad9b,dccp: check sk for closed state in dccp_sendmsg()
+CVE-2018-8781,3.18.103,,no,CONFIG_DRM_UDL=n,6949153ccb2fde17fb76e1ebcfdb8f5727dc58d1,drm: udl: Properly check framebuffer mmap offsets
+CVE-2018-8822,3.18.103,,no,CONFIG_NCPFS=n,43f8ff29c37bf96b918a8fa1a9a2c13d28603044,staging: ncpfs: memory corruption in ncp_read_kernel()
+CVE-2018-7757,3.18.105,,no,CONFIG_SCSI_LOWLEVEL=n,c7323e9393266e6227540f906d74a6c55be39f37,scsi: libsas: fix memory leak in sas_smp_get_phy_events()
+CVE-2018-9422,3.18.105,P1,yes,,714f4e55231893dd2319962127e6c9b730c57c1a,futex: Remove requirement for lock_page() in get_futex_key()
+CVE-2018-1092,3.18.106,P2,yes,,bf1b17715e9117c1c22c7a24e38f27a92eb98413,ext4: fail ext4_iget for root directory if unallocated
+CVE-2018-10940,3.18.107,,no,CONFIG_BLK_DEV_SR/CDROM=n,8e8a40578fac765527a5d55d258a2ca93904ed1b,cdrom: information leak in cdrom_ioctl_media_changed()
+CVE-2018-1093,3.18.108,P2,yes,,0643dbdb5c697fbe20dd380bcb3faa1dcec03b78,ext4: add validity checks for bitmap block numbers
+CVE-2017-18255,3.18.109,P2,yes,,2e9cbae49c5d3e69ca04510d68ae161374e5d0a2,perf/core: Fix the perf_cpu_time_max_percent check
+CVE-2018-1000204,3.18.110,,no,CONFIG_CHR_DEV_SG=n,58b7ce6f9ef2367f86384b20458642945993b816,scsi: sg: allocate with __GFP_ZERO in sg_build_indirect()
+CVE-2018-10021,3.18.110,,no,CONFIG_SCSI_LOWLEVEL=n,badf15c8a243ca1292b8034dea2f91cc01982010,scsi: libsas: defer ata device eh commands to libata
+CVE-2018-10087,3.18.110,,no,arch/feature not built (arm64),9535063c6fd52d42b954b68762269f6b27e26c91,kernel/exit.c: avoid undefined behaviour when calling wait4()
+CVE-2018-5814,3.18.110,,no,protocol/driver not built,d1641e51d22e7ed33ba3101c01e006120f32a653,usbip: usbip_host: fix NULL-ptr deref and use-after-free errors
+CVE-2017-13695,3.18.111,,no,arch/feature not built (arm64),c81492260a2202dcea658087b5dd1b319f59bbf0,ACPICA: acpi: acpica: fix acpi operand cache leak in nseval.c
+CVE-2018-10124,3.18.111,,no,arch/feature not built (arm64),50ecbf90142cbfc7cc0194d4f71cf9673e03ab33,kernel/signal.c: avoid undefined behaviour in kill_something_info
+CVE-2018-6412,3.18.111,,no,sbusfb not built,db57535b77b8de5646291f368f50f9494800bff5,fbdev: Fixing arbitrary kernel leak in case FBIOGETCMAP_SPARC in sbusfb_ioctl_helper().
+CVE-2018-9518,3.18.111,,no,CONFIG_NFC=n,39e221cb5ce0822cd7d0a4c82e8949d32f33e43e,NFC: llcp: Limit size of SDP URI
+CVE-2019-18675,3.18.113,P2,yes,,bf3ff108832e28b7ca8df5a02e2a03ced29cd31e,mmap: introduce sane default mmap limits
+CVE-2018-13406,3.18.114,,no,CONFIG_FB_UVESA=n,7568ba6cc40986d9553820da9468f94d0591942b,video: uvesafb: Fix integer overflow in allocation
+CVE-2017-13168,3.18.115,,no,CONFIG_CHR_DEV_SG=n,be37222d7cbc6610686c9501bbe1cff13c81bfc5,scsi: sg: mitigate read/write abuse
+CVE-2018-10879,3.18.115,P2,yes,,780f50a6dcd2d067edf9761e9a45564ac4019522,ext4: make sure bitmaps and the inode table don't overlap with bg descriptors
+CVE-2018-10881,3.18.115,P2,yes,,15b85a060ace8d19d1c7c0290380bedcf46cc4ac,ext4: clear i_data in ext4_inode_info when removing inline data
+CVE-2018-9516,3.18.115,,no,CONFIG_HID_DEBUG=n,f7e1dd8ebca4d67411c333223e4205879d141eaa,HID: debug: check length before copy_to_user()
+CVE-2018-13405,3.18.116,P1,yes,,c5f2c5be9d1787a7bde81186d093be54c0caeb34,Fix up non-directory creation in SGID directories
+CVE-2018-16276,3.18.116,,no,USB class driver not built,b261643c6916c8d4e8571072abdc5e6646054db6,USB: yurex: fix out-of-bounds uaccess in read handler
+CVE-2018-10902,3.18.117,P2,yes,,bfa30d8adceec8633bea60333707fe1208f2f0e9,ALSA: rawmidi: Change resized buffers atomically
+CVE-2018-12233,3.18.118,,no,CONFIG_JFS_FS=n,31430f2b98f6053933482e51d008124fc31bc3e0,jfs: Fix inconsistency between memory allocation and ea_buf->max_size
+CVE-2018-14734,3.18.118,,no,CONFIG_INFINIBAND=n,77e6abf43c95a39fd97a5fb644c26e303bd60459,infiniband: fix a possible use-after-free bug
+CVE-2018-9363,3.18.119,,no,CONFIG_BT=n,adfdcfe1c7cd5f163855b0d3ea5d3a75efddd576,Bluetooth: hidp: buffer overflow in hidp_process_report
+CVE-2018-16658,3.18.121,,no,CONFIG_BLK_DEV_SR/CDROM=n,2f294385874e8e152f357531aa177a19560c8a64,cdrom: Fix info leak/OOB read in cdrom_ioctl_drive_status
+CVE-2018-14609,3.18.123,,no,CONFIG_BTRFS_FS=n,56f338b39513de39679cf0c2da704d4803c9a0d5,btrfs: relocation: Only remove reloc rb_trees if reloc control has been initialized
+CVE-2018-17182,3.18.123,P1,yes,,2b8f74c8f0a4aab0a20b9e77fdc3d17e8f2405dd,mm: get rid of vmacache_flush_all() entirely
+CVE-2018-6554,3.18.123,,no,"staging/irda removed, not built",9f0547e071f848a665056e18c70cc2741a96ca76,staging: irda: remove the irda network stack and drivers
+CVE-2018-6555,3.18.123,,no,"staging/irda removed, not built",f24049f47194791d0393450b4f5cebea9f0b5e89,staging: irda: remove the irda network stack and drivers
+CVE-2018-10876,3.18.124,P2,yes,,8d419749b27419caf8eb914cd2d6b7fc19efc316,ext4: only look at the bg_flags field if it is valid
+CVE-2018-10877,3.18.124,P2,yes,,683626073ac0f1ded012d8861b189350147eb86b,ext4: verify the depth of extent tree in ext4_find_extent()
+CVE-2018-10878,3.18.124,P2,yes,,6f6da33decb7d9de01447638ca737a846bf0181b,ext4: always check block group bounds in ext4_init_block_bitmap()
+CVE-2018-10880,3.18.124,P2,yes,,fd2634366fca1f93e7d4cf36c8a919dfe11cd0ec,ext4: never move the system.data xattr out of the inode body
+CVE-2018-10882,3.18.124,P2,yes,,292dc9673821842c0762b5d095a05e354e795392,ext4: add more inode number paranoia checks
+CVE-2018-10883,3.18.124,P1,yes,,524100251d15d4dc491671b84854017327ff2dba,jbd2: don't mark block as modified if the handle is out of credits
+CVE-2018-13053,3.18.124,P1,yes,,f497869a6feab016c2dfd58bf80decfe57348ed9,alarmtimer: Prevent overflow for relative nanosleep
+CVE-2018-14633,3.18.124,,no,CONFIG_ISCSI_TARGET=n,d31152ba0f282348c9ffbd8436b7a3622064aea6,scsi: target: iscsi: Use hex2bin instead of a re-implementation
+CVE-2018-17972,3.18.124,P1,yes,,ea20fab573d999205f8b1438d792486dcf76aa4c,proc: restrict kernel stack dumps to root
+CVE-2018-18021,3.18.124,,no,arm64 KVM (CONFIG_KVM=n),d26e09111cb7b9c3727c4621ee241cb408d47a7d,arm64: KVM: Tighten guest core register access from userspace
+CVE-2018-20511,3.18.124,,no,CONFIG_ATALK=n,2ababd51858f71ef174a1bb2fe045f0b23f04c1c,net/appletalk: fix minor pointer leak to userspace in SIOCFINDIPDDPRT
+CVE-2018-7755,3.18.124,,no,CONFIG_BLK_DEV_FD=n,0facefd1d7db43e1c220405ca773adb7b97975a6,floppy: Do not copy a kernel pointer to user memory in FDGETPRM ioctl
+CVE-2019-9458,3.18.124,,no,MEDIA/DRM not built,10c134df948c2d581f5b89a44072a07ba8cf4069,media: v4l: event: Prevent freeing event subscriptions while accessed
+CVE-2018-18281,3.18.125,P1,yes,,0f1490a7573919a27dfc370c29a87caf142db993,mremap: properly flush TLB before releasing the page
+CVE-2018-18710,3.18.126,,no,CONFIG_BLK_DEV_SR/CDROM=n,0869341c34905b7f34b1c4e2a378bf1488f9df7c,"cdrom: fix improper type cast, which can leat to information leak."
+CVE-2018-16862,3.18.129,P1,yes,,599379965a37d87155f6c98196cd0e6ca1537c70,mm: cleancache: fix corruption on missed inode invalidation
+CVE-2018-20169,3.18.129,P0,yes,,d672c306e00a904adcbdce42b51b23b3e906f5cf,USB: check usb_get_extra_descriptor for proper size
+CVE-2018-12896,3.18.131,P1,yes,,2f5f58a8b5d8eb12cfc955cca62ccb5254bab951,posix-timers: Sanitize overrun handling
+CVE-2018-5848,3.18.131,,no,CONFIG_MAC80211/vendor wifi not built,eac164f4025d7bf7afb0ecf0cee06f55ca096a40,wil6210: missing length check in wmi_set_ie
+CVE-2018-5953,3.18.131,P2,yes,,fa3ec41ea511910599838a1fe8820e31ef85efdd,printk: hash addresses printed with %p
+CVE-2018-19985,3.18.132,,no,USB class driver not built,2dbfeb3393252289ce87a8e1a6ddbd47c2aa7eb4,USB: hso: Fix OOB memory access in hso_probe/hso_get_config_data
+CVE-2019-15927,3.18.132,P0,yes,,172236e69b714879fe534b1fa2e8ffed2c221ebc,ALSA: usb-audio: Avoid access before bLength check in build_audio_procunit()
+CVE-2019-6133,3.18.132,P2,yes,,0b2758fb10d9557899b614e76a6d60d299baadf5,fork: record start_time late
+CVE-2018-16884,3.18.133,,no,CONFIG_SUNRPC=n,b1c0a2b920e66a6cd90644e5cbbd861b755f40fa,sunrpc: use-after-free in svc_process_common()
+CVE-2019-3701,3.18.133,,no,CONFIG_CAN=n,4c3b21c842deb09721015a8463087e3c262be385,can: gw: ensure DLC boundaries after CAN frame modification
+CVE-2020-10769,3.18.133,,no,CONFIG_KEYS=n,98d2b2486aea705806f72626e02f29b8d6b8aa68,crypto: authenc - fix parsing key with misaligned rta_len
+CVE-2019-7221,3.18.135,,no,x86 KVM only,8767556995adf9a10b49fb0c2098b7aeb40ee64c,KVM: nVMX: unconditionally cancel preemption timer in free_nested (CVE-2019-7221)
+CVE-2019-7222,3.18.135,,no,x86 KVM only,d283b5404655ef51aeafb092d7c79c6718b48c7b,KVM: x86: work around leak of uninitialized stack contents (CVE-2019-7222)
+CVE-2019-6974,3.18.136,,no,CONFIG_KVM=n,673f9cf4a99f80a8cab2b015adf1b03c8ca4d66a,kvm: fix kvm_ioctl_create_device() reference counting (CVE-2019-6974)
+CVE-2019-12818,3.18.137,,no,CONFIG_NFC=n,e89106985667c7119fa580f74a7beb453399f44c,net: nfc: Fix NULL dereference on nfc_llcp_build_tlv fails
+CVE-2019-12819,3.18.137,P1,yes,,077a353641d29fc28062866ec589eb2e365f1d56,mdio_bus: Fix use-after-free on device_register fails
+CVE-2019-15916,3.18.137,P1,yes,,a7053bc3aeefb24b94290a5c438fbcfe635ee4c7,net-sysfs: Fix mem leak in netdev_register_kobject
+CVE-2019-16995,3.18.137,,no,CONFIG_HSR=n,e3d6490ad2b47f41bd534a6a5f8655549a754665,net: hsr: fix memory leak in hsr_dev_finalize()
+CVE-2019-2101,3.18.137,,no,MEDIA/DRM not built,7828fe7452f151cc1107a5c28ed042aeb64c1166,media: uvcvideo: Fix 'type' check leading to overflow
+CVE-2019-25160,3.18.137,,no,CONFIG_NETLABEL=n,c61d01faa5550e06794dcf86125ccd325bfad950,netlabel: fix out-of-bounds memory accesses
+CVE-2019-9213,3.18.137,P1,yes,,f290a73f3e919c4d5482632284ccb0aa17f7380c,mm: enforce min addr even if capable() in expand_downwards()
+CVE-2020-0066,3.18.137,P2,yes,,5821948648caf10f8c8f7e9c9f8ac8fd22c640ba,netlink: Trim skb to alloc size to avoid MSG_TRUNC
+CVE-2019-20054,3.18.138,P1,yes,,beb70e5c511ca99454c20334c56499fd413c1d6d,fs/proc/proc_sysctl.c: fix NULL pointer dereference in put_links
+CVE-2019-3459,3.18.138,,no,CONFIG_BT=n,ac7c597c465eb09391e40febbe088bdad601080b,Bluetooth: Verify that l2cap_get_conf_opt provides large enough buffer
+CVE-2019-3460,3.18.138,,no,CONFIG_BT=n,8f9c5ea93aa788302dddec8589aff079f9ac4bac,Bluetooth: Check L2CAP option sizes returned from l2cap_get_conf_opt
+CVE-2017-18551,3.18.139,P1,yes,,e045c806436d3202e497051d3d63a23db8e16169,i2c: core-smbus: prevent stack corruption on read I2C_BLOCK_DATA
+CVE-2019-10639,3.18.139,P1,yes,,c2bca92ba948f3def1f99f6b429ec39e07354dc2,netns: provide pure entropy for net_hash_mix()
+CVE-2019-11190,3.18.139,P1,yes,,119b8e38491b9bc21efe06ed3f5a1b3d879c4998,binfmt_elf: switch to new creds when switching to new mm
+CVE-2019-11486,3.18.139,,no,CONFIG_N_R3964=n,20d4e7627b1451e68ddde913b5a289664716c318,tty: mark Siemens R3964 line discipline as BROKEN
+CVE-2019-11810,3.18.139,,no,CONFIG_SCSI_MEGARAID_SAS=n,9670c4d542aa2fac5dfa7f95f6e79c25dd1e11f0,scsi: megaraid_sas: return error when create DMA pool failed
+CVE-2019-15214,3.18.139,P1,yes,,8ad4179e47f711549de33f991dfb8e129ed1175e,ALSA: core: Fix card races between register and disconnect
+CVE-2019-15292,3.18.139,,no,CONFIG_ATALK=n,ab885986b6308c902364b4a91d73fae3003da9fe,appletalk: Fix use-after-free in atalk_proc_exit
+CVE-2019-9454,3.18.139,P1,yes,,e045c806436d3202e497051d3d63a23db8e16169,i2c: core-smbus: prevent stack corruption on read I2C_BLOCK_DATA
+CVE-2018-20836,3.18.140,,no,CONFIG_SCSI_LOWLEVEL=n,ec22b57b0527530cecda657f9f1ec2f8068150a0,scsi: libsas: fix a race condition when smp task timeout
+CVE-2019-10142,3.18.140,,no,CONFIG_FSL_HYPERVISOR=n,db7e50136a20bc175fe081ff1764b5b96af85e2d,drivers/virt/fsl_hypervisor.c: prevent integer overflow in ioctl
+CVE-2019-11884,3.18.140,,no,CONFIG_BT=n,9c47ad93de73786aef31033e2aabd9df020e68cd,Bluetooth: hidp: fix buffer overflow
+CVE-2019-15216,3.18.140,,no,USB class driver not built,15c0d2672a4711fa277ca040e92af36009de4bf6,USB: yurex: Fix protection fault after device removal

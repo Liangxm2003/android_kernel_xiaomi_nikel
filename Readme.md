@@ -190,6 +190,29 @@
 	  completes smoothly both after boot and after a lock/unlock cycle.
 	  Idle touch-IRQ counts are stable, and no I2C-4 errors are logged.
 
+=========================================================================
+* Security fixes (CVE backports):
+
+	* This tree started from vanilla 3.18.22. It now includes the
+	  security fixes from stable 3.18.23 through 3.18.140 that apply to
+	  the subsystems this kernel actually builds (157 patches, after
+	  filtering out disabled subsystems such as Bluetooth, SCTP/DCCP,
+	  KEYS, KVM, mac80211, media/DRM and most SCSI low-level drivers).
+	* Covered areas include: core networking (TCP/UDP/IPv4/IPv6, XFRM,
+	  netfilter/x_tables, AF_PACKET, AF_UNIX), USB core/gadget/HID/audio,
+	  ext4, FUSE, ISO9660, the memory manager (including Dirty COW and
+	  the stack-guard gap), futex/perf/timers, TTY/PTTY, ALSA, I2C,
+	  ashmem/ION, the block layer and several information-leak fixes.
+	* The full inventory, with fix versions, upstream commit hashes and
+	  applicability notes, is in Documentation/CVE_PORT_LIST.md and
+	  Documentation/CVE_PORT_LIST.csv.
+	* Caveats: applicability was decided from this kernel's config, not
+	  from a per-patch runtime test; the CVE dataset is complete through
+	  about 2024, so 2025-2026 CVEs are not included yet. The result was
+	  compiled and boot-tested on the author's single nikel unit only.
+	* The CVE backport work was also done with AI assistance, like the
+	  driver work above.
+
 # Building the kernel
 ```
 chmod a+x Build && bash Build
