@@ -1,5 +1,9 @@
 # build output
 /out/
+/out-diag/
+
+# boot diagnostics captures
+/bootlogs/
 
 # local toolchain
 /gcc/
