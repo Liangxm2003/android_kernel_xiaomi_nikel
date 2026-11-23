@@ -5481,8 +5481,6 @@ int primary_display_get_info(disp_session_info *info)
 
 	dispif_info->physicalWidth = DISP_GetActiveWidth();
 	dispif_info->physicalHeight = DISP_GetActiveHeight();
-	dispif_info->physicalWidthUm = DISP_GetActiveWidthUm();
-	dispif_info->physicalHeightUm = DISP_GetActiveHeightUm();
 
 	dispif_info->vsyncFPS = pgc->lcm_fps;
 

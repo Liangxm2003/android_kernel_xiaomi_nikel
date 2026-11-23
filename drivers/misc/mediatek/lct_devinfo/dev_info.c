@@ -83,7 +83,7 @@ static const struct of_device_id lct_devinfo_dt_match[] = {
 #endif
 
 static DEFINE_SPINLOCK(dev_lock);
-static struct list_head active_devinfo_list;
+static LIST_HEAD(active_devinfo_list);
 
 static unsigned int device_num = 0;
 /*********************************************************************************

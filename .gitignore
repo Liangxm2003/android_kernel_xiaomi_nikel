@@ -4,6 +4,7 @@
 
 # boot diagnostics captures
 /bootlogs/
+/bootpack/
 
 # local toolchain
 /gcc/
